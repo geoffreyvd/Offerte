@@ -5,21 +5,21 @@ app.config(['$routeProvider',
         $routeProvider
             .when('/oudeoffertes', {
                 title: 'Oudeoffertes',
-                templateUrl: 'oudeOfferte.php',
+                templateUrl: 'php/templates/oudeOfferte.php',
                 controller: 'OudeOfferteCtrl'
             })
             .when('/nieuweoffertes', {
                 title: 'nieuweOfferte',
-                templateUrl: 'nieuweOfferte.php',
+                templateUrl: 'php/templates/nieuweOfferte.php',
                 controller: 'NieuweOfferteCtrl'
             })
             .when('/', {
                 title: 'nieuweOfferte',
-                templateUrl: 'nieuweOfferte.php',
+                templateUrl: 'php/templates/nieuweOfferte.php',
                 controller: 'NieuweOfferteCtrl'
             })
             .otherwise({
-                redirectTo: '/'
+                redirectTo: ''
             });
   }])
 
@@ -56,7 +56,7 @@ app.config(['$routeProvider',
         {
             mainMenuName: 'Inloggen',
             mainMenuIcon: 'fa-sign-in',
-            mainMenuLocation: ''
+            mainMenuLocation: '#/login'
         },
         {
             mainMenuName: 'Nieuwe Offerte',
@@ -70,8 +70,8 @@ app.config(['$routeProvider',
         },
         {
             mainMenuName: 'Voorraad beheer',
-            mainMenuIcon: 'fa-users',
-            mainMenuLocation: 'http://www.google.nl'
+            mainMenuIcon: 'fa-shopping-cart',
+            mainMenuLocation: '#/voorraad'
         }
     ];
     $scope.selectedMenu = 1;
@@ -114,7 +114,7 @@ app.config(['$routeProvider',
 
 
 .controller('OudeOfferteCtrl', ['$scope', '$http', function ($scope, $http) {
-    $http.get("getOffertes.php")
+    $http.get("php/getOffertes.php")
         .success(function (response) {
             $scope.WerkzaamhedenPHP = response.records;
         });
