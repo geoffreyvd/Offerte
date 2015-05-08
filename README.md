@@ -19,12 +19,11 @@ Future feature's:
 I am an intern at MintyMedia, a small webdevelopment company.
 This is the project I am currently working on, this is also the end project for school.
 
-Web interface: http://imgur.com/lhFYQPD
+Web interface: http://imgur.com/lhFYQPD <br>
 Output('Bekijk PDF' button): http://imgur.com/hUgqQ9h
 
 # Setup
-Stuff you need
--localhost for php
--import SQL file in database
--Edit 'getOffertes.php' database credentials password etc...
+-localhost for php <br>
+-import SQL file in database <br>
+-Edit 'getOffertes.php' database credentials password etc... <br>
 -Chrome browser
