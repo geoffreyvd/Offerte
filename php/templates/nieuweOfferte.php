@@ -3,7 +3,7 @@
     <div class="row">
         <div class="col-sm-12 form-group">
             <h1>Offerte Maken</h1>
-            <textarea class="form-control" rows="3" ng-model="omschrijvingen" placeholder="Omschrijving"></textarea>
+            <textarea class="form-control" rows="3" ng-model="omschrijving" placeholder="Omschrijving"></textarea>
 
         </div>
     </div>
@@ -31,7 +31,7 @@
     <h5>Dit is een offerte van MintyMedia</h5>
     <p></p>
     <br>
-    <p>Omschrijving: {{omschrijvingen}}</p>
+    <p>Omschrijving: {{omschrijving}}</p>
     <!-- Tabel Werkzaamheden en bedrag -->
     <table class="table table-hover">
         <thead>
@@ -56,6 +56,7 @@
         </tbody>
     </table>
     <a ng-click="bekijkPDF();" class="hidden-print btn btn-default">Bekijk PDF</a>
+    <a ng-click="uploadOfferte();" class="hidden-print btn btn-default">Upload PDF</a>
     <!-- Totaal bedrag -->
     <div class="clearfix">
         <div class="pull-right">
@@ -100,6 +101,7 @@
 
 <div class="visible-print-block" id="footer">
     <div class="container">
-        <p class="text-center"><small>Minty Media | Mollerusweg 82 | 2031 BZ Haarlem | 023-2302134 | info@mintymedia.nl.<br> Op alle werkzaamheden van Minty Media gelden de Algemene voorwaarden, deze zijn te raadplegen op www.mintymedia.nl</small></p>
+        <p class="text-center"><small>Minty Media | Mollerusweg 82 | 2031 BZ Haarlem | 023-2302134 | info@mintymedia.nl.<br> Op alle werkzaamheden van Minty Media gelden de Algemene voorwaarden, deze zijn te raadplegen op www.mintymedia.nl</small>
+        </p>
     </div>
 </div>

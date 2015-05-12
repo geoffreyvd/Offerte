@@ -13,6 +13,11 @@ app.config(['$routeProvider',
                 templateUrl: 'php/templates/nieuweOfferte.php',
                 controller: 'NieuweOfferteCtrl'
             })
+            .when('/formule', {
+                title: 'formule',
+                templateUrl: 'php/templates/formule.php',
+                controller: 'FormuleCtrl'
+            })
             .when('/', {
                 title: 'nieuweOfferte',
                 templateUrl: 'php/templates/nieuweOfferte.php',
@@ -31,7 +36,7 @@ app.config(['$routeProvider',
     };
     $scope.showModal = false;
     $scope.titel = "Offerte systeem";
-    $scope.omschrijvingen = "De klant wilt een Wordpress website waarbij ze zelf een theme uitkiest. Ook de SEO word door ons gedaan. De specifieke aanpassing doen wij ook waarbij de klant wel extra betaald voor de extra gewerkte uren.";
+    $scope.omschrijving = "De klant wilt een Wordpress website waarbij ze zelf een theme uitkiest. Ook de SEO word door ons gedaan. De specifieke aanpassing doen wij ook waarbij de klant wel extra betaald voor de extra gewerkte uren.";
 
     //default variables
     $scope.Werkzaamheden = [
@@ -54,9 +59,9 @@ app.config(['$routeProvider',
     ];
     $scope.mainMenuItems = [
         {
-            mainMenuName: 'Inloggen',
+            mainMenuName: 'formule',
             mainMenuIcon: 'fa-sign-in',
-            mainMenuLocation: '#/login'
+            mainMenuLocation: '#/formule'
         },
         {
             mainMenuName: 'Nieuwe Offerte',
@@ -110,16 +115,44 @@ app.config(['$routeProvider',
             print();
         }, 500);
     };
+
+
+    $scope.uploadOfferte = function () {
+        $scope.request2 = $http({
+            method: "post",
+            url: "php/postOfferte.php",
+            data: {
+                titel: $scope.titel,
+                omschrijving: $scope.omschrijving,
+                werkzaamheden: $scope.Werkzaamheden
+            },
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded'
+            }
+        });
+        $scope.request2.success(function (data) {
+            console.log("succes! data: " + data);
+        });
+    };
 }])
 
 
 .controller('OudeOfferteCtrl', ['$scope', '$http', function ($scope, $http) {
-    $http.get("php/getOffertes.php")
-        .success(function (response) {
-            $scope.WerkzaamhedenPHP = response.records;
-        });
+    $http.get("php/getOffertes.php").success(function (response) {
+        $scope.WerkzaamhedenPHP = response.records;
+    });
     $scope.showWerkzaamheden = function (index) {
         alert("werkID = " + $scope.WerkzaamhedenPHP[index].werkID + "; werkzaamheden = " + $scope.WerkzaamhedenPHP[index].werkTitel + "; Bedrag = " + $scope.WerkzaamhedenPHP[index].werkPrijs);
-    }
+    };
+
+}])
+
+
+.controller('FormuleCtrl', ['$scope', '$http', function ($scope, $http) {
+    $scope._stWidth = 5;
+    $scope._stLength = 20;
+    $scope._vgWidth = 0.4;
+    $scope._vgDepth = 3;
+    $scope._surface = 10;
 
 }]);

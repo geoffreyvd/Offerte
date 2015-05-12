@@ -14,7 +14,7 @@ if ($conn->connect_errno) {
     exit();
 }
 
-$result = $conn->query("SELECT offertes.OfferteID, OfferteNaam, OfferteOmschrijving, OfferteDatum, werkzaamheden.WerkzaamheidID, WerkzaamheidTitel, WerkzaamheidPrijs FROM offertes inner join hulptabel on offertes.OfferteID = hulptabel.OfferteID inner join werkzaamheden on hulptabel.WerkzaamheidID = werkzaamheden.WerkzaamheidID");
+$result = $conn->query("SELECT * FROM `offertes`");
 
 $outp = "";
 while($rs = $result->fetch_array(MYSQLI_ASSOC)) {
@@ -22,10 +22,7 @@ while($rs = $result->fetch_array(MYSQLI_ASSOC)) {
     $outp .= '{"ID":"' . $rs["OfferteID"] . '",';
     $outp .= '"omschrijving":"'. $rs["OfferteOmschrijving"] . '",';
     $outp .= '"naam":"'. $rs["OfferteNaam"]. '",';
-    $outp .= '"datum":"'. $rs["OfferteDatum"]. '",';
-    $outp .= '"werkID":"'. $rs["WerkzaamheidID"]. '",';
-    $outp .= '"werkTitel":"'. $rs["WerkzaamheidTitel"]. '",';
-    $outp .= '"werkPrijs":"'. $rs["WerkzaamheidPrijs"]. '"}'; 
+    $outp .= '"datum":"'. $rs["OfferteDatum"]. '"}';
 }
 $outp ='{"records":['.$outp.']}';
 $conn->close();
