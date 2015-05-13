@@ -6,9 +6,10 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <title ng-bind="titel"></title>
-    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+    <title ng-bind="parentVariables[0].titel"></title>
     <link rel="shortcut icon" type="image/x-icon" href="libs/images/1euro.ico" />
+
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
     <!-- Bootstrap -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
     <!-- custom css -->
@@ -23,6 +24,7 @@
 </head>
 
 <body>
+    <!-- menu -->
     <div class="hidden-print tabbable tabs-left ">
         <ul class="hidden-xs nav nav-tabs menu mainmenu">
             <li data-ng-repeat="mainmenu in mainMenuItems">
@@ -33,12 +35,21 @@
             </li>
         </ul>
     </div>
+
+    <!-- content view -->
     <div id="wrap">
         <div class="container">
             <ng-view></ng-view>
         </div>
     </div>
 
+    <!-- footer -->
+    <div class="visible-print-block" id="footer">
+        <div class="container">
+            <p class="text-center"><small>Minty Media | Mollerusweg 82 | 2031 BZ Haarlem | 023-2302134 | info@mintymedia.nl.<br> Op alle werkzaamheden van Minty Media gelden de Algemene voorwaarden, deze zijn te raadplegen op www.mintymedia.nl</small>
+            </p>
+        </div>
+    </div>
 
 
 
@@ -51,9 +62,7 @@
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular-route.js"></script>
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular-animate.js"></script>
     <script type="text/javascript" src="js/app.js"></script>
-
-
-
+    <script type="text/javascript" src="js/nieuweOfferteCtrl.js"></script>
 </body>
 
 </html>

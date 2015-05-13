@@ -34,43 +34,35 @@ app.config(['$routeProvider',
     $scope.handleMenuClicked = function (index) {
         $scope.selectedMenu = index;
     };
-    $scope.showModal = false;
-    $scope.titel = "Offerte systeem";
-    $scope.omschrijving = "De klant wilt een Wordpress website waarbij ze zelf een theme uitkiest. Ook de SEO word door ons gedaan. De specifieke aanpassing doen wij ook waarbij de klant wel extra betaald voor de extra gewerkte uren.";
 
     //default variables
+    $scope.showModal = false;
+    $scope.selectedMenu = 1;
+    $scope.parentVariables = [
+        {
+            titel : ""
+        }
+    ];
     $scope.Werkzaamheden = [
         {
-            name: 'Wordpress Website',
-            price: 450
-        },
-        {
-            name: 'Wordpress Theme',
-            price: 50
-        },
-        {
-            name: 'SEO',
-            price: 80
-        },
-        {
-            name: 'Specifieke wensen',
-            price: 120
+            name: '',
+            price: 0
         }
     ];
     $scope.mainMenuItems = [
         {
             mainMenuName: 'formule',
-            mainMenuIcon: 'fa-sign-in',
+            mainMenuIcon: 'fa-calculator',
             mainMenuLocation: '#/formule'
         },
         {
             mainMenuName: 'Nieuwe Offerte',
-            mainMenuIcon: 'fa-user',
+            mainMenuIcon: 'fa-file-pdf-o',
             mainMenuLocation: '#/nieuweoffertes'
         },
         {
             mainMenuName: 'Oude offertes',
-            mainMenuIcon: 'fa-users',
+            mainMenuIcon: 'fa-list-ul',
             mainMenuLocation: '#/oudeoffertes'
         },
         {
@@ -79,63 +71,7 @@ app.config(['$routeProvider',
             mainMenuLocation: '#/voorraad'
         }
     ];
-    $scope.selectedMenu = 1;
 }])
-
-
-.controller('NieuweOfferteCtrl', ['$scope', '$http', function ($scope, $http) {
-    $scope.bekijkPDF = function () {
-        $("#myModal").modal('show');
-    };
-    $scope.addPerson = function () {
-        $scope.bedrag = 0;
-        var Werkzaamheid = {
-            name: $scope.naam,
-            price: $scope.bedrag
-        };
-        $scope.Werkzaamheden.push(Werkzaamheid);
-    };
-    $scope.removePerson = function (index) {
-        $scope.Werkzaamheden.splice(index, 1);
-    };
-    $scope.getTotal = function () {
-        var total = 0,
-            price = 0,
-            i, product;
-        for (i = 0; i < $scope.Werkzaamheden.length; i++) {
-            product = $scope.Werkzaamheden[i];
-            price = parseFloat(product.price);
-            total += price;
-        }
-        return total;
-    };
-    $scope.veranderTitel = function () {
-        $scope.titel = $scope.nieuweTitel;
-        setTimeout(function () {
-            print();
-        }, 500);
-    };
-
-
-    $scope.uploadOfferte = function () {
-        $scope.request2 = $http({
-            method: "post",
-            url: "php/postOfferte.php",
-            data: {
-                titel: $scope.titel,
-                omschrijving: $scope.omschrijving,
-                werkzaamheden: $scope.Werkzaamheden
-            },
-            headers: {
-                'Content-Type': 'application/x-www-form-urlencoded'
-            }
-        });
-        $scope.request2.success(function (data) {
-            console.log("succes! data: " + data);
-        });
-    };
-}])
-
 
 .controller('OudeOfferteCtrl', ['$scope', '$http', function ($scope, $http) {
     $http.get("php/getOffertes.php").success(function (response) {

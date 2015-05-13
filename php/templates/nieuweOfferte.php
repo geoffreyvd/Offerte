@@ -1,29 +1,60 @@
 <!-- invoer word niet gezien in het print scherm -->
 <div class="hidden-print invoer">
     <div class="row">
-        <div class="col-sm-12 form-group">
-            <h1>Offerte Maken</h1>
-            <textarea class="form-control" rows="3" ng-model="omschrijving" placeholder="Omschrijving"></textarea>
 
-        </div>
-    </div>
-    <div class="row" ng-repeat="Werkzaamheid in Werkzaamheden">
-        <br>
-        <div class="col-md-9 col-sm-7 form-group">
-            <input class="form-control" type="text" ng-model="Werkzaamheid.name" placeholder="Werkzaamheden" />
+        <h1>Offerte Maken</h1>
+        <div class="col-md-5 col-sm-5 form-group">
+            <input class="form-control" type="text" ng-model="klantNaam" placeholder="Klant naam" />
         </div>
         <div class="col-md-2 col-sm-3 form-group">
-            <div class="input-group">
-                <div class="input-group-addon">€</div>
-                <input class="form-control" type="text" ng-model="Werkzaamheid.price" placeholder="Bedrag" />
+            <input class="form-control" type="text" ng-model="klantID" placeholder="Klant ID" readonly/>
+        </div>
+        <div class="col-md-5 col-sm-4 form-group">
+            <input class="form-control" type="text" ng-model="parentVariables[0].titel" placeholder="Offerte titel" />
+        </div>
+
+        <div class="col-sm-12 form-group">
+            <textarea class="form-control" rows="3" ng-model="omschrijving" placeholder="Omschrijving"></textarea>
+        </div>
+
+        <div ng-repeat="Werkzaamheid in Werkzaamheden">
+            <div class="col-md-9 col-sm-7 form-group">
+                <input class="form-control" type="text" ng-model="Werkzaamheid.name" placeholder="Werkzaamheden" />
+            </div>
+            <div class="col-md-2 col-sm-3 form-group">
+                <div class="input-group">
+                    <div class="input-group-addon">€</div>
+                    <input class="form-control" type="text" ng-model="Werkzaamheid.price" placeholder="Bedrag" />
+                </div>
+            </div>
+            <div class="col-md-1 col-sm-2 form-group">
+                <button class="btn" type="button" ng-click="removePerson($index)">delete</button>
             </div>
         </div>
-        <div class="col-md-1 col-sm-2 form-group">
-            <button class="btn" type="button" ng-click="removePerson($index)">delete</button>
+
+        <div class="text-center">
+            <div class="  btn-group">
+                <a ng-click="bekijkPDF();" class="hidden-print btn btn-default">Watch PDF</a>
+                <button class="btn btn-primary" ng-click="addPerson()">New Item</button>
+                <div class="btn-group">
+                    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                        Save <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu" role="menu">
+                        <li><a ng-click="uploadOfferte();" class="btn">Save as current</a>
+                        </li>
+                        <li><a ng-click="uploadOfferte();" class="btn">Save as new</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
         </div>
+
+
+
+
+        <!--<button class="center-block btn btn-primary" ng-click="addPerson()">New Item</button> -->
     </div>
-    <br>
-    <button class="center-block btn btn-primary" ng-click="addPerson()">New Item</button>
 </div>
 <!-- uitvoer -->
 <div class="uitvoer">
@@ -32,6 +63,8 @@
     <p></p>
     <br>
     <p>Omschrijving: {{omschrijving}}</p>
+    
+    {{date | date:'yyyy-MM-dd'}}
     <!-- Tabel Werkzaamheden en bedrag -->
     <table class="table table-hover">
         <thead>
@@ -55,8 +88,11 @@
             </tr>
         </tbody>
     </table>
-    <a ng-click="bekijkPDF();" class="hidden-print btn btn-default">Bekijk PDF</a>
-    <a ng-click="uploadOfferte();" class="hidden-print btn btn-default">Upload PDF</a>
+    <!--
+    <a ng-click="bekijkPDF();" class="hidden-print btn btn-default">Watch PDF</a>
+    <a ng-click="uploadOfferte();" class="hidden-print btn btn-default">Save as current</a>
+    <a ng-click="uploadOfferte();" class="hidden-print btn btn-default">Save as new</a>
+    -->
     <!-- Totaal bedrag -->
     <div class="clearfix">
         <div class="pull-right">
@@ -96,12 +132,5 @@
                 <button ng-click="veranderTitel()" type="submit" class="btn btn-primary" data-dismiss="modal">Save changes</button>
             </div>
         </div>
-    </div>
-</div>
-
-<div class="visible-print-block" id="footer">
-    <div class="container">
-        <p class="text-center"><small>Minty Media | Mollerusweg 82 | 2031 BZ Haarlem | 023-2302134 | info@mintymedia.nl.<br> Op alle werkzaamheden van Minty Media gelden de Algemene voorwaarden, deze zijn te raadplegen op www.mintymedia.nl</small>
-        </p>
     </div>
 </div>

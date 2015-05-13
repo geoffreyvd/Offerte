@@ -33,6 +33,9 @@
                 {{ Werkzaamheid.datum }}
             </td>
             <td>
+                {{ Werkzaamheid.company }}
+            </td>
+            <td>
                 <button class="btn" type="button" ng-click="showWerkzaamheden($index)">kijk</button>
             </td>
         </tr>
