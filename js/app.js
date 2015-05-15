@@ -60,16 +60,6 @@ app.config(['$routeProvider',
             ]
         }
     ];
-    $scope.werkzaamhedenParent = [
-        {
-            Werkzaamheden: [
-                {
-                    name: '',
-                    price: 0
-                }
-            ]
-        }
-    ];
     $scope.Werkzaamheden32 = $scope.offerteParent[0].Werkzaamheden[0].name;
     console.log("eerste werkzaamheid: " + $scope.Werkzaamheden32);
 

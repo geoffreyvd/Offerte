@@ -3,21 +3,25 @@
     <div class="row">
 
         <h1>Offerte Maken</h1>
-        <div class="col-md-5 col-sm-4 form-group">
+        <div class="col-md-4 col-sm-3 form-group">
             <input class="form-control" type="text" ng-model="parentVariables[0].titel" placeholder="Offerte titel" />
         </div>
-        <div class="col-md-5 col-sm-5 form-group">
+        <div class="col-md-4 col-sm-3 form-group">
             <input class="form-control" type="text" ng-model="offerteParent[0].offerte[0].klantNaam" placeholder="Klant naam" />
         </div>
         <div class="col-md-2 col-sm-3 form-group">
             <input class="form-control" type="text" ng-model="offerteParent[0].offerte[0].klantID" placeholder="Klant ID" readonly/>
+        </div>
+        <div class="col-md-2 col-sm-3 form-group">
+            <select class="form-control" ng-model="myColor" ng-options="color.name for color in colors"></select>
         </div>
 
         <div class="col-sm-12 form-group">
             <textarea class="form-control" rows="3" ng-model="offerteParent[0].offerte[0].omschrijving" placeholder="Omschrijving"></textarea>
         </div>
 
-        <div ng-repeat="Werkzaamheid in Werkzaamheden"><hr>
+        <div ng-repeat="Werkzaamheid in Werkzaamheden">
+            <hr>
             <div class="col-md-9 col-sm-7 form-group">
                 <input class="form-control" type="text" ng-model="Werkzaamheid.name" placeholder="Werkzaamheden" />
             </div>
@@ -49,11 +53,6 @@
                 </div>
             </div>
         </div>
-
-
-
-
-        <!--<button class="center-block btn btn-primary" ng-click="addPerson()">New Item</button> -->
     </div>
 </div>
 <!-- uitvoer -->
@@ -63,7 +62,7 @@
     <p></p>
     <br>
     <p>Omschrijving: {{omschrijving}}</p>
-    
+
     {{date | date:'yyyy-MM-dd'}}
     <!-- Tabel Werkzaamheden en bedrag -->
     <table class="table table-hover">
@@ -88,12 +87,6 @@
             </tr>
         </tbody>
     </table>
-    <!--
-    <a ng-click="bekijkPDF();" class="hidden-print btn btn-default">Watch PDF</a>
-    <a ng-click="uploadOfferte();" class="hidden-print btn btn-default">Save as current</a>
-    <a ng-click="uploadOfferte();" class="hidden-print btn btn-default">Save as new</a>
-    -->
-    <!-- Totaal bedrag -->
     <div class="clearfix">
         <div class="pull-right">
             <table class="table noborder">

@@ -1,4 +1,12 @@
 app.controller('NieuweOfferteCtrl', ['$scope', '$http', function ($scope, $http) {
+    $scope.colors = [
+      {name:'black', shade:'dark'},
+      {name:'white', shade:'light', notAnOption: true},
+      {name:'red', shade:'dark'},
+      {name:'blue', shade:'dark', notAnOption: true},
+      {name:'yellow', shade:'light', notAnOption: false}
+    ];
+    $scope.myColor = $scope.colors[2]; // red
     $scope.bekijkPDF = function () {
         if ($scope.parentVariables[0].titel === "") {
             $("#myModal").modal('show');
@@ -6,8 +14,8 @@ app.controller('NieuweOfferteCtrl', ['$scope', '$http', function ($scope, $http)
             print();
         }
     };
-    $scope.Werkzaamheden = $scope.offerteParent[0].Werkzaamheden;
     $scope.veranderTitel = function () {
+        ///handling modal
         $scope.parentVariables[0].titel = $scope.nieuweTitel;
         setTimeout(function () {
             print();
@@ -42,8 +50,9 @@ app.controller('NieuweOfferteCtrl', ['$scope', '$http', function ($scope, $http)
             url: "php/postOfferte.php",
             data: {
                 titel: $scope.parentVariables[0].titel,
-                omschrijving: $scope.omschrijving,
-                werkzaamheden: $scope.Werkzaamheden
+                omschrijving: $scope.offerteParent[0].offerte[0].omschrijving,
+                werkzaamheden: $scope.Werkzaamheden,
+                klantid: $scope.offerteParent[0].offerte[0].klantID
             },
             headers: {
                 'Content-Type': 'application/x-www-form-urlencoded'
@@ -54,6 +63,6 @@ app.controller('NieuweOfferteCtrl', ['$scope', '$http', function ($scope, $http)
         });
     };
 
-    $scope.omschrijving = "";
+    $scope.Werkzaamheden = $scope.offerteParent[0].Werkzaamheden;
     $scope.date = new Date();
 }]);
