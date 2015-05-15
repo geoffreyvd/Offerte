@@ -14,6 +14,9 @@
             <th class="col-xs-2">
                 datum
             </th>
+            <th class="col-xs-2">
+                bedrijf
+            </th>
             <th class="col-xs-1">
             </th>
         </tr>
@@ -33,10 +36,10 @@
                 {{ Werkzaamheid.datum }}
             </td>
             <td>
-                {{ Werkzaamheid.company }}
+                {{ Werkzaamheid.bedrijf }}
             </td>
             <td>
-                <button class="btn" type="button" ng-click="showWerkzaamheden($index)">kijk</button>
+                <button class="btn" type="button" ng-click="showWerkzaamheden(Werkzaamheid.ID)">kijk</button>
             </td>
         </tr>
     </tbody>

@@ -3,21 +3,21 @@
     <div class="row">
 
         <h1>Offerte Maken</h1>
-        <div class="col-md-5 col-sm-5 form-group">
-            <input class="form-control" type="text" ng-model="klantNaam" placeholder="Klant naam" />
-        </div>
-        <div class="col-md-2 col-sm-3 form-group">
-            <input class="form-control" type="text" ng-model="klantID" placeholder="Klant ID" readonly/>
-        </div>
         <div class="col-md-5 col-sm-4 form-group">
             <input class="form-control" type="text" ng-model="parentVariables[0].titel" placeholder="Offerte titel" />
         </div>
-
-        <div class="col-sm-12 form-group">
-            <textarea class="form-control" rows="3" ng-model="omschrijving" placeholder="Omschrijving"></textarea>
+        <div class="col-md-5 col-sm-5 form-group">
+            <input class="form-control" type="text" ng-model="offerteParent[0].offerte[0].klantNaam" placeholder="Klant naam" />
+        </div>
+        <div class="col-md-2 col-sm-3 form-group">
+            <input class="form-control" type="text" ng-model="offerteParent[0].offerte[0].klantID" placeholder="Klant ID" readonly/>
         </div>
 
-        <div ng-repeat="Werkzaamheid in Werkzaamheden">
+        <div class="col-sm-12 form-group">
+            <textarea class="form-control" rows="3" ng-model="offerteParent[0].offerte[0].omschrijving" placeholder="Omschrijving"></textarea>
+        </div>
+
+        <div ng-repeat="Werkzaamheid in Werkzaamheden"><hr>
             <div class="col-md-9 col-sm-7 form-group">
                 <input class="form-control" type="text" ng-model="Werkzaamheid.name" placeholder="Werkzaamheden" />
             </div>

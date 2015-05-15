@@ -22,7 +22,8 @@
         $outp .= '{"ID":"' . $rs["OfferteID"] . '",';
         $outp .= '"omschrijving":"'. $rs["OfferteOmschrijving"] . '",';
         $outp .= '"naam":"'. $rs["OfferteNaam"]. '",';
-        $outp .= '"datum":"'. $rs["OfferteDatum"]. '"}';
+        $outp .= '"datum":"'. $rs["OfferteDatum"]. '",';
+        $outp .= '"bedrijf":"'. $rs["Company"]. '"}';
     }
     $outp ='{"records":['.$outp.']}';
     $conn->close();

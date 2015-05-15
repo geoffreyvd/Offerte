@@ -23,6 +23,9 @@
                 return($mysqli->insert_id);
             }
         }
+        else{ 
+            printf(" UNsuccesfull query: '$tempQuery'\n");
+        }
     }
 
     ///post offerte with query to database

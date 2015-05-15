@@ -6,13 +6,13 @@ app.controller('NieuweOfferteCtrl', ['$scope', '$http', function ($scope, $http)
             print();
         }
     };
+    $scope.Werkzaamheden = $scope.offerteParent[0].Werkzaamheden;
     $scope.veranderTitel = function () {
         $scope.parentVariables[0].titel = $scope.nieuweTitel;
         setTimeout(function () {
             print();
         }, 500);
     };
-
     $scope.addPerson = function () {
         $scope.bedrag = 0;
         var Werkzaamheid = {

@@ -32,23 +32,48 @@ app.config(['$routeProvider',
     "use strict";
 
     $scope.handleMenuClicked = function (index) {
-        $scope.selectedMenu = index;
+        $scope.parentVariables[0].selectedMenu = index;
     };
 
     //default variables
     $scope.showModal = false;
-    $scope.selectedMenu = 1;
     $scope.parentVariables = [
         {
-            titel : ""
+            titel: "",
+            selectedMenu: 1
         }
     ];
-    $scope.Werkzaamheden = [
+    $scope.offerteParent = [
         {
-            name: '',
-            price: 0
+            Offerte: [
+                {
+                    klantID :0,
+                    omschrijving : '',
+                    offerteTitel: ''
+                }
+            ],
+            Werkzaamheden: [
+                {
+                    name: '',
+                    price: 0
+                }
+            ]
         }
     ];
+    $scope.werkzaamhedenParent = [
+        {
+            Werkzaamheden: [
+                {
+                    name: '',
+                    price: 0
+                }
+            ]
+        }
+    ];
+    $scope.Werkzaamheden32 = $scope.offerteParent[0].Werkzaamheden[0].name;
+    console.log("eerste werkzaamheid: " + $scope.Werkzaamheden32);
+
+
     $scope.mainMenuItems = [
         {
             mainMenuName: 'formule',
@@ -66,7 +91,7 @@ app.config(['$routeProvider',
             mainMenuLocation: '#/oudeoffertes'
         },
         {
-            mainMenuName: 'Voorraad beheer',
+            mainMenuName: 'Voorraad',
             mainMenuIcon: 'fa-shopping-cart',
             mainMenuLocation: '#/voorraad'
         }
@@ -77,8 +102,34 @@ app.config(['$routeProvider',
     $http.get("php/getOffertes.php").success(function (response) {
         $scope.WerkzaamhedenPHP = response.records;
     });
-    $scope.showWerkzaamheden = function (index) {
-        alert("werkID = " + $scope.WerkzaamhedenPHP[index].werkID + "; werkzaamheden = " + $scope.WerkzaamhedenPHP[index].werkTitel + "; Bedrag = " + $scope.WerkzaamhedenPHP[index].werkPrijs);
+    $scope.showWerkzaamheden = function (ID) {
+        console.log(ID);
+        $scope.request = $http({
+            method: "post",
+            url: "php/getOfferte.php",
+            data: {
+                OfferteID: ID
+            },
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded'
+            }
+        });
+        $scope.request.success(function (data) {
+            console.log("succes! data: ", data);
+            $scope.offerteParent[0].Werkzaamheden = data.werkzaamheden;
+            $scope.offerteParent[0].offerte = data.offerte;
+            $scope.parentVariables[0].titel = data.offerte[0].offerteTitel;
+            
+            console.log("offerte: ", $scope.offerteParent[0].offerte);
+
+            $scope.parentVariables[0].selectedMenu = 1;
+            window.location = "#/nieuweoffertes";
+        });
+
+        $scope.request.error(function (data) {
+            console.log("error! data: ", data);
+            console.log("data werkzaamheden: ", data.werkzaamheden);
+        });
     };
 
 }])

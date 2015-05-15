@@ -28,7 +28,7 @@
     <div class="hidden-print tabbable tabs-left ">
         <ul class="hidden-xs nav nav-tabs menu mainmenu">
             <li data-ng-repeat="mainmenu in mainMenuItems">
-                <a ng-class="selectedMenu === $index ? 'selected' : ''" ng-href="{{mainmenu.mainMenuLocation}}" ng-click="handleMenuClicked($index)">
+                <a ng-class="parentVariables[0].selectedMenu === $index ? 'selected' : ''" ng-href="{{mainmenu.mainMenuLocation}}" ng-click="handleMenuClicked($index)">
                     <i class="fa ng-class:mainmenu.mainMenuIcon; fa-1x"></i>
                     <span ng-bind="mainmenu.mainMenuName"></span>
                 </a>
