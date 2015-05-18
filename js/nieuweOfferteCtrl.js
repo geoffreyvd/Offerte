@@ -55,7 +55,7 @@ app.controller('NieuweOfferteCtrl', ['$scope', '$http', '$log', function ($scope
             }
         });
         $scope.request.success(function (data) {
-            $log.info("succes! data: " + data);
+            $log.info("postOfferte.php succes! data: " + data);
         });
     };
 

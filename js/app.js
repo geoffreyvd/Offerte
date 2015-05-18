@@ -91,7 +91,7 @@ app.config(['$routeProvider',
         $scope.WerkzaamhedenPHP = response.records;
     });
     $scope.showWerkzaamheden = function (ID) {
-        $log.info(ID);
+        $log.info("offerte id: " + ID);
         $scope.request = $http({
             method: "post",
             url: "php/getOfferte.php",
@@ -103,15 +103,13 @@ app.config(['$routeProvider',
             }
         });
         $scope.request.success(function (data) {
-            console.log("succes! data: ", data);
+            console.log("getOfferte.php succes! data: ", data);
             $scope.offerteParent[0].Werkzaamheden = data.werkzaamheden;
             $scope.offerteParent[0].Offerte = data.offerte;
             $scope.parentVariables[0].titel = data.offerte[0].offerteTitel;
 
-            console.log("$scope.offerteParent[0].Offerte[0].klantID : " + $scope.offerteParent[0].Offerte[0].klantID);
-            console.log("offerte: ", $scope.offerteParent[0].Offerte);
+            console.log("klantID : " + $scope.offerteParent[0].Offerte[0].klantID);
 
-            $scope.parentVariables[0].selectedMenu = 1;
             window.location = "#/nieuweoffertes";
         });
         $scope.request.error(function (data) {
