@@ -6,18 +6,21 @@
         <div class="col-md-4 col-sm-3 form-group">
             <input class="form-control" type="text" ng-model="parentVariables[0].titel" placeholder="Offerte titel" />
         </div>
+
         <div class="col-md-4 col-sm-3 form-group">
-            <input class="form-control" type="text" ng-model="offerteParent[0].offerte[0].klantNaam" placeholder="Klant naam" />
+            <select class="form-control" ng-model="selectedKlant" ng-options="klant as klant.company for klant in klanten">
+                <option value="" ng-hide="selectedKlant">Bedrijf naam</option>
+            </select>
         </div>
-        <div class="col-md-2 col-sm-3 form-group">
-            <input class="form-control" type="text" ng-model="offerteParent[0].offerte[0].klantID" placeholder="Klant ID" readonly/>
+        <div class="col-md-3 col-sm-3 form-group">
+            <input class="form-control" type="text" ng-model="selectedKlant.contact" placeholder="Klant naam" readonly/>
         </div>
-        <div class="col-md-2 col-sm-3 form-group">
-            <select class="form-control" ng-model="myColor" ng-options="color.name for color in colors"></select>
+        <div class="col-md-1 col-sm-2 form-group">
+            <input class="form-control" type="text" ng-model="selectedKlant.clientID" placeholder="ID" class="text-center" readonly/>
         </div>
 
         <div class="col-sm-12 form-group">
-            <textarea class="form-control" rows="3" ng-model="offerteParent[0].offerte[0].omschrijving" placeholder="Omschrijving"></textarea>
+            <textarea class="form-control" rows="3" ng-model="offerteParent[0].Offerte[0].omschrijving" placeholder="Omschrijving"></textarea>
         </div>
 
         <div ng-repeat="Werkzaamheid in Werkzaamheden">

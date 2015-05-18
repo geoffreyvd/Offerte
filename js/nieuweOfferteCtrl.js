@@ -1,12 +1,5 @@
-app.controller('NieuweOfferteCtrl', ['$scope', '$http', function ($scope, $http) {
-    $scope.colors = [
-      {name:'black', shade:'dark'},
-      {name:'white', shade:'light', notAnOption: true},
-      {name:'red', shade:'dark'},
-      {name:'blue', shade:'dark', notAnOption: true},
-      {name:'yellow', shade:'light', notAnOption: false}
-    ];
-    $scope.myColor = $scope.colors[2]; // red
+app.controller('NieuweOfferteCtrl', ['$scope', '$http', '$log', function ($scope, $http, $log) {
+    "use strict";
     $scope.bekijkPDF = function () {
         if ($scope.parentVariables[0].titel === "") {
             $("#myModal").modal('show');
@@ -21,6 +14,7 @@ app.controller('NieuweOfferteCtrl', ['$scope', '$http', function ($scope, $http)
             print();
         }, 500);
     };
+
     $scope.addPerson = function () {
         $scope.bedrag = 0;
         var Werkzaamheid = {
@@ -32,10 +26,12 @@ app.controller('NieuweOfferteCtrl', ['$scope', '$http', function ($scope, $http)
     $scope.removePerson = function (index) {
         $scope.Werkzaamheden.splice(index, 1);
     };
+
     $scope.getTotal = function () {
         var total = 0,
             price = 0,
-            i, product;
+            product,
+            i;
         for (i = 0; i < $scope.Werkzaamheden.length; i++) {
             product = $scope.Werkzaamheden[i];
             price = parseFloat(product.price);
@@ -50,19 +46,38 @@ app.controller('NieuweOfferteCtrl', ['$scope', '$http', function ($scope, $http)
             url: "php/postOfferte.php",
             data: {
                 titel: $scope.parentVariables[0].titel,
-                omschrijving: $scope.offerteParent[0].offerte[0].omschrijving,
+                omschrijving: $scope.offerteParent[0].Offerte[0].omschrijving,
                 werkzaamheden: $scope.Werkzaamheden,
-                klantid: $scope.offerteParent[0].offerte[0].klantID
+                klantid: $scope.selectedKlant.clientID
             },
             headers: {
                 'Content-Type': 'application/x-www-form-urlencoded'
             }
         });
         $scope.request.success(function (data) {
-            console.log("succes! data: " + data);
+            $log.info("succes! data: " + data);
         });
     };
 
+    $scope.getKlanten = function () {
+        $scope.request = $http({
+            method: "post",
+            url: "php/getKlanten.php",
+            data: {},
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded'
+            }
+        });
+        $scope.request.success(function (data) {
+            console.log("getKlanten.php succes! data: ", data);
+            $scope.klanten = data.klanten;
+            $scope.selectedKlant = $scope.klanten[$scope.offerteParent[0].Offerte[0].klantID - 1];
+        });
+    };
+
+    $scope.selectedKlant = {};
+    $scope.parentVariables[0].selectedMenu = 1;
+    $scope.getKlanten();
     $scope.Werkzaamheden = $scope.offerteParent[0].Werkzaamheden;
     $scope.date = new Date();
 }]);

@@ -26,9 +26,9 @@ app.config(['$routeProvider',
             .otherwise({
                 redirectTo: ''
             });
-  }])
+    }])
 
-.controller('ParentController', ['$scope', '$http', function ($scope, $http) {
+.controller('ParentController', ['$scope', '$http', '$log', function ($scope, $http, $log) {
     "use strict";
 
     $scope.handleMenuClicked = function (index) {
@@ -40,15 +40,15 @@ app.config(['$routeProvider',
     $scope.parentVariables = [
         {
             titel: "",
-            selectedMenu: 1
+            selectedMenu: null
         }
     ];
     $scope.offerteParent = [
         {
             Offerte: [
                 {
-                    klantID :0,
-                    omschrijving : '',
+                    klantID: 0,
+                    omschrijving: '',
                     offerteTitel: ''
                 }
             ],
@@ -60,9 +60,6 @@ app.config(['$routeProvider',
             ]
         }
     ];
-    $scope.Werkzaamheden32 = $scope.offerteParent[0].Werkzaamheden[0].name;
-    console.log("eerste werkzaamheid: " + $scope.Werkzaamheden32);
-
 
     $scope.mainMenuItems = [
         {
@@ -88,12 +85,13 @@ app.config(['$routeProvider',
     ];
 }])
 
-.controller('OudeOfferteCtrl', ['$scope', '$http', function ($scope, $http) {
+.controller('OudeOfferteCtrl', ['$scope', '$http', '$log', function ($scope, $http, $log) {
+    $scope.parentVariables[0].selectedMenu = 2;
     $http.get("php/getOffertes.php").success(function (response) {
         $scope.WerkzaamhedenPHP = response.records;
     });
     $scope.showWerkzaamheden = function (ID) {
-        console.log(ID);
+        $log.info(ID);
         $scope.request = $http({
             method: "post",
             url: "php/getOfferte.php",
@@ -107,15 +105,15 @@ app.config(['$routeProvider',
         $scope.request.success(function (data) {
             console.log("succes! data: ", data);
             $scope.offerteParent[0].Werkzaamheden = data.werkzaamheden;
-            $scope.offerteParent[0].offerte = data.offerte;
+            $scope.offerteParent[0].Offerte = data.offerte;
             $scope.parentVariables[0].titel = data.offerte[0].offerteTitel;
-            
-            console.log("offerte: ", $scope.offerteParent[0].offerte);
+
+            console.log("$scope.offerteParent[0].Offerte[0].klantID : " + $scope.offerteParent[0].Offerte[0].klantID);
+            console.log("offerte: ", $scope.offerteParent[0].Offerte);
 
             $scope.parentVariables[0].selectedMenu = 1;
             window.location = "#/nieuweoffertes";
         });
-
         $scope.request.error(function (data) {
             console.log("error! data: ", data);
             console.log("data werkzaamheden: ", data.werkzaamheden);
@@ -123,7 +121,6 @@ app.config(['$routeProvider',
     };
 
 }])
-
 
 .controller('FormuleCtrl', ['$scope', '$http', function ($scope, $http) {
     $scope._stWidth = 5;
