@@ -1,28 +1,29 @@
 <!-- invoer word niet gezien in het print scherm -->
 <div class="hidden-print invoer">
+    <h1>Offerte Maken</h1>
     <div class="row">
-
-        <h1>Offerte Maken</h1>
+        <!-- Offerte titel en klant & bedrijf naam -->
         <div class="col-md-4 col-sm-3 form-group">
             <input class="form-control" type="text" ng-model="parentVariables[0].titel" placeholder="Offerte titel" />
         </div>
-
-        <div class="col-md-4 col-sm-3 form-group">
+        <div class="col-md-4 col-sm-4 form-group">
             <select class="form-control" ng-model="selectedKlant" ng-options="klant as klant.company for klant in klanten">
                 <option value="" ng-hide="selectedKlant">Bedrijf naam</option>
             </select>
         </div>
         <div class="col-md-3 col-sm-3 form-group">
-            <input class="form-control" type="text" ng-model="selectedKlant.contact" placeholder="Klant naam" readonly/>
+            <input class="form-control" type="text" ng-model="selectedKlant.contact" placeholder="Contact naam" readonly/>
         </div>
         <div class="col-md-1 col-sm-2 form-group">
             <input class="form-control" type="text" ng-model="selectedKlant.clientID" placeholder="ID" class="text-center" readonly/>
         </div>
 
+        <!--omschrijving -->
         <div class="col-sm-12 form-group">
             <textarea class="form-control" rows="3" ng-model="offerteParent[0].Offerte[0].omschrijving" placeholder="Omschrijving"></textarea>
         </div>
 
+        <!-- werkzaamheden, prijs en delete knop-->
         <div ng-repeat="Werkzaamheid in Werkzaamheden">
             <hr>
             <div class="col-md-9 col-sm-7 form-group">
@@ -39,6 +40,7 @@
             </div>
         </div>
 
+        <!-- button group -->
         <div class="text-center">
             <div class="  btn-group">
                 <a ng-click="bekijkPDF();" class="hidden-print btn btn-default">Watch PDF</a>
@@ -58,15 +60,24 @@
         </div>
     </div>
 </div>
+
 <!-- uitvoer -->
 <div class="uitvoer">
     <img src="libs/images/Minty-Media-2015.png" class="img-responsive" alt="Logo">
-    <h5>Dit is een offerte van MintyMedia</h5>
-    <p></p>
-    <br>
-    <p>Omschrijving: {{omschrijving}}</p>
+    <div class="pull-left">
+        <h5>Offerte naam: {{parentVariables[0].titel}} </h5>
+        <p>{{date | date:'yyyy-MM-dd'}}</p>
+        <br>        
+    </div>
+    <div class="clearfix">
+        <div class="pull-right">
+            <p></p>
+            <p ng-bind="selectedKlant.company"></p>
+            <p ng-bind="selectedKlant.contact"></p>
+        </div>
+    </div><br>
+    <p>Omschrijving: {{offerteParent[0].Offerte[0].omschrijving}}</p><br><br>
 
-    {{date | date:'yyyy-MM-dd'}}
     <!-- Tabel Werkzaamheden en bedrag -->
     <table class="table table-hover">
         <thead>
