@@ -116,7 +116,7 @@ app.config(['$routeProvider',
 }])
 
 .controller('FormuleCtrl', ['$scope', '$http', function ($scope, $http) {
-    $scope.parentVariables[0].selectedMenu = 4;
+    $scope.parentVariables[0].selectedMenu = 0;
     $scope._stWidth = 5;
     $scope._stLength = 20;
     $scope._vgWidth = 0.4;

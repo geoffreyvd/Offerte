@@ -67,7 +67,7 @@
     <div class="pull-left">
         <h5>Offerte naam: {{parentVariables[0].titel}} </h5>
         <p>{{date | date:'yyyy-MM-dd'}}</p>
-        <br>        
+        <br>
     </div>
     <div class="clearfix">
         <div class="pull-right">
@@ -75,8 +75,11 @@
             <p ng-bind="selectedKlant.company"></p>
             <p ng-bind="selectedKlant.contact"></p>
         </div>
-    </div><br>
-    <p>Omschrijving: {{offerteParent[0].Offerte[0].omschrijving}}</p><br><br>
+    </div>
+    <br>
+    <p>Omschrijving: {{offerteParent[0].Offerte[0].omschrijving}}</p>
+    <br>
+    <br>
 
     <!-- Tabel Werkzaamheden en bedrag -->
     <table class="table table-hover">
