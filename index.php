@@ -25,16 +25,24 @@
 
 <body>
     <!-- menu -->
-    <div class="hidden-print tabbable tabs-left ">
-        <ul class="hidden-xs nav nav-tabs menu mainmenu">
-            <li data-ng-repeat="mainmenu in mainMenuItems">
-                <a ng-class="parentVariables[0].selectedMenu === $index ? 'selected' : ''" ng-href="{{mainmenu.mainMenuLocation}}" ng-click="handleMenuClicked($index)">
-                    <i class="fa ng-class:mainmenu.mainMenuIcon; fa-1x"></i>
-                    <span ng-bind="mainmenu.mainMenuName"></span>
-                </a>
-            </li>
-        </ul>
-    </div>
+    <div class="hidden-print tabbable tabs-left "><nav class="navbar navbar-inverse"><div class="container-fluid">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar"><span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+        </div>
+        <div class="collapse navbar-collapse" id="myNavbar">
+            <ul class="nav nav-tabs menu mainmenu">
+                <li data-ng-repeat="mainmenu in mainMenuItems">
+                    <a ng-class="parentVariables[0].selectedMenu === $index ? 'selected' : ''" ng-href="{{mainmenu.mainMenuLocation}}" ng-click="handleMenuClicked($index)">
+                        <i class="fa ng-class:mainmenu.mainMenuIcon; fa-1x"></i>
+                        <span ng-bind="mainmenu.mainMenuName"></span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+        </div></nav></div>
 
     <!-- content view -->
     <div id="wrap">
@@ -50,7 +58,7 @@
             </p>
         </div>
     </div>
-    
+
     <!-- include all scripts -->
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
