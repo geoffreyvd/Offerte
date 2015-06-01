@@ -7,13 +7,13 @@
     ///post offerte with query to database
     $query = "insert into offertes (OfferteID, OfferteNaam, OfferteOmschrijving, OfferteDatum, KlantID) values";
     
-   $titel = $request->titel;
-   $klantid = $request->klantid;
-   $omschrijving = $request->omschrijving;
-   $datum = date("Y-m-d");   
-   $query .= " ('NULL', '$titel', '$omschrijving', '$datum', '$klantid')";
-   ///run function post and check id, save offerteID 
-   $OfferteID = post($query,true);
+    $titel = $request->titel;
+    $klantid = $request->klantid;
+    $omschrijving = $request->omschrijving;
+    $datum = date("Y-m-d");   
+    $query .= " ('NULL', '$titel', '$omschrijving', '$datum', '$klantid')";
+    ///run function post and check id, save offerteID 
+    $OfferteID = post($query,true);
 
     ///post werkzaamheden with query to database
     $query = "insert into werkzaamheden (WerkzaamheidID, WerkzaamheidTitel, WerkzaamheidPrijs, OfferteID) values";

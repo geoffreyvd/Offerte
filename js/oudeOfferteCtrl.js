@@ -30,5 +30,29 @@ app.controller('OudeOfferteCtrl', ['$scope', '$http', '$log', function ($scope, 
             console.log("data werkzaamheden: ", data.werkzaamheden);
         });
     };
-
+    $scope.deleteOfferte = function (werkzaamheidID) {
+        $scope.werkzaamheidID = werkzaamheidID;
+        $("#bevestigOfferteModal").modal('show');
+    };
+    $scope.deleteOfferte2 = function () {
+        $scope.request = $http({
+            method: "post",
+            url: "php/deleteOfferte.php",
+            data: {
+                OfferteID: $scope.werkzaamheidID
+            },
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded'
+            }
+        });
+        $scope.request.success(function (data) {
+            console.log("deleteOfferte.php succes! data: ", data);
+            $http.get("php/getOffertes.php").success(function (response) {
+                $scope.WerkzaamhedenPHP = response.records;
+            });
+        });
+        $scope.request.error(function (data) {
+            console.log("deleteOfferte.php error! data: ", data);
+        });
+    };
 }]);

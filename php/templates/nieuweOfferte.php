@@ -36,31 +36,32 @@
                 </div>
             </div>
             <div class="col-md-1 col-sm-2 form-group">
-                <button class="btn" type="button" ng-click="removePerson($index)">delete</button>
+                <button class="btn" type="button" ng-click="removePerson($index)">Verwijder</button>
             </div>
         </div>
 
 
-        <button class="btn btn-primary pull-right" ng-click="addPerson()">New Item</button>
+        <button class="btn btn-primary pull-right" ng-click="addPerson()">Nieuw werkzaamheid</button>
 
         <!-- button group -->
         <div class="text-center">
             <div class="btn-group">
-                <a ng-click="bekijkPDF();" class="hidden-print btn btn-default">Watch PDF</a>
+                <a ng-click="bekijkPDF();" class="hidden-print btn btn-default">Bekijk PDF</a>
                 <div class="btn-group">
                     <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-                        Save <span class="caret"></span>
+                        Opslaan als<span class="caret"></span>
                     </button>
                     <ul class="dropdown-menu" role="menu">
-                        <li><a ng-click="uploadOfferte();" class="btn">Save as current</a>
+                        <li>
+                            <a ng-click="uploadOfferte();" class="btn">huidige offerte</a>
                         </li>
-                        <li><a ng-click="uploadOfferte();" class="btn">Save as new</a>
+                        <li>
+                            <a ng-click="uploadOfferte();" class="btn">nieuwe offerte</a>
                         </li>
                     </ul>
                 </div>
             </div>
         </div>
-
     </div>
 </div>
 

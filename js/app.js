@@ -1,35 +1,33 @@
-var app = angular.module('OfferteApp', ['ngRoute']);
+var app = angular.module('OfferteApp', ['ngRoute', 'uiGmapgoogle-maps']);
 
 app.config(['$routeProvider',
   function ($routeProvider) {
         $routeProvider
             .when('/oudeoffertes', {
-                title: 'Oudeoffertes',
                 templateUrl: 'php/templates/oudeOfferte.php',
                 controller: 'OudeOfferteCtrl'
             })
             .when('/nieuweoffertes', {
-                title: 'nieuweOfferte',
                 templateUrl: 'php/templates/nieuweOfferte.php',
                 controller: 'NieuweOfferteCtrl'
-            })           
+            })
             .when('/klanten', {
-                title: 'klanten',
                 templateUrl: 'php/templates/klanten.php',
                 controller: 'KlantenCtrl'
-            })           
+            })
             .when('/voorraad', {
-                title: 'voorraad',
                 templateUrl: 'php/templates/voorraad.php',
                 controller: 'VoorraadCtrl'
             })
+            .when('/map', {
+                templateUrl: 'php/templates/map.php',
+                controller: 'MapCtrl'
+            })
             .when('/', {
-                title: 'nieuweOfferte',
-                templateUrl: 'php/templates/nieuweOfferte.php',
-                controller: 'NieuweOfferteCtrl'
+                redirectTo: '/nieuweoffertes'
             })
             .otherwise({
-                redirectTo: ''
+                redirectTo: '/nieuweoffertes'
             });
     }])
 
@@ -66,7 +64,7 @@ app.config(['$routeProvider',
         }
     ];
 
-    $scope.mainMenuItems = [        
+    $scope.mainMenuItems = [
         {
             mainMenuName: 'Nieuwe Offerte',
             mainMenuIcon: 'fa-file-pdf-o',
@@ -86,30 +84,58 @@ app.config(['$routeProvider',
             mainMenuName: 'Voorraad',
             mainMenuIcon: 'fa-shopping-cart',
             mainMenuLocation: '#/voorraad'
+        },
+        {
+            mainMenuName: 'Map',
+            mainMenuIcon: 'fa-map-marker',
+            mainMenuLocation: '#/map'
         }
     ];
-}])
 
-.controller('KlantenCtrl', ['$scope', '$http', function ($scope, $http) {
-    $scope.parentVariables[0].selectedMenu = 2;
-    $scope.request = $http({
-        method: "post",
-        url: "php/getAllKlanten.php",
-        data: {},
-        headers: {
-            'Content-Type': 'application/x-www-form-urlencoded'
-        }
-    });
-    $scope.request.success(function (data) {
-        console.log("getAllKlanten.php succes! data: ", data);
-        $scope.alleKlanten = data.klanten;
-    });
-    $scope.request.error(function (data) {
-        console.log("error! data: ", data);
-    });
+    $scope.checkPass = function (paswoord) {
+        $scope.request3 = $http({
+            method: "post",
+            url: "php/checkPassword.php",
+            data: {
+                wachtwoord: paswoord
+            },
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded'
+            }
+        });
+        $scope.request3.success(function (data) {
+            console.log("checkPass.php succes! data: ", data);
+            $scope.ingelogd = data;
 
+        });
+        $scope.request3.error(function (data) {
+            console.log("checkPass.php error! data: ", data);
+        });
+    };
+    $scope.ingelogd = true;
 }])
 
 .controller('VoorraadCtrl', ['$scope', function ($scope) {
-    
+    $scope.parentVariables[0].selectedMenu = 3;
+}])
+
+.controller('MapCtrl', ['$scope', function ($scope) {
+    $scope.parentVariables[0].selectedMenu = 4;
+    /* $scope.map = {
+         center: {
+             latitude: 52.3941,
+             longitude: 4.6668
+         },
+         zoom: 8
+     };
+     $scope.options = {
+         scrollwheel: false
+     };
+     var events = {
+         places_changed: function (searchBox) {}
+     }
+     $scope.searchbox = {
+         template: 'searchbox.tpl.html',
+         events: events
+     };*/
 }]);

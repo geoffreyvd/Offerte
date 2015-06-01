@@ -41,8 +41,11 @@
 
     <!-- content view -->
     <div id="wrap">
-        <div class="container">
+        <div class="container-fluid" ng-if="ingelogd">
             <ng-view></ng-view>
+        </div>
+        <div class="container" ng-hide="ingelogd" ng-include src="'/../offerte/php/templates/login.php'">
+
         </div>
     </div>
 
@@ -53,7 +56,7 @@
             </p>
         </div>
     </div>
-    
+
     <!-- include all scripts -->
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
@@ -67,6 +70,11 @@
     <script type="text/javascript" src="js/app.js"></script>
     <script type="text/javascript" src="js/nieuweOfferteCtrl.js"></script>
     <script type="text/javascript" src="js/oudeOfferteCtrl.js"></script>
+    <script type="text/javascript" src="js/mapCtrl.js"></script>
+    <script type="text/javascript" src="js/klantCtrl.js"></script>
+
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/3.9.3/lodash.min.js"></script>
+    <script type="text/javascript" src="https://rawgit.com/angular-ui/angular-google-maps/master/dist/angular-google-maps.min.js"></script>
 </body>
 
 </html>
