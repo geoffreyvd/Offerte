@@ -12,16 +12,16 @@ app.config(['$routeProvider',
                 title: 'nieuweOfferte',
                 templateUrl: 'php/templates/nieuweOfferte.php',
                 controller: 'NieuweOfferteCtrl'
-            })
-            .when('/formule', {
-                title: 'formule',
-                templateUrl: 'php/templates/formule.php',
-                controller: 'FormuleCtrl'
-            })
+            })           
             .when('/klanten', {
                 title: 'klanten',
                 templateUrl: 'php/templates/klanten.php',
                 controller: 'KlantenCtrl'
+            })           
+            .when('/voorraad', {
+                title: 'voorraad',
+                templateUrl: 'php/templates/voorraad.php',
+                controller: 'VoorraadCtrl'
             })
             .when('/', {
                 title: 'nieuweOfferte',
@@ -66,12 +66,7 @@ app.config(['$routeProvider',
         }
     ];
 
-    $scope.mainMenuItems = [
-        {
-            mainMenuName: 'formule',
-            mainMenuIcon: 'fa-calculator',
-            mainMenuLocation: '#/formule'
-        },
+    $scope.mainMenuItems = [        
         {
             mainMenuName: 'Nieuwe Offerte',
             mainMenuIcon: 'fa-file-pdf-o',
@@ -96,7 +91,7 @@ app.config(['$routeProvider',
 }])
 
 .controller('KlantenCtrl', ['$scope', '$http', function ($scope, $http) {
-    $scope.parentVariables[0].selectedMenu = 3;
+    $scope.parentVariables[0].selectedMenu = 2;
     $scope.request = $http({
         method: "post",
         url: "php/getAllKlanten.php",
@@ -115,12 +110,6 @@ app.config(['$routeProvider',
 
 }])
 
-.controller('FormuleCtrl', ['$scope', '$http', function ($scope, $http) {
-    $scope.parentVariables[0].selectedMenu = 0;
-    $scope._stWidth = 5;
-    $scope._stLength = 20;
-    $scope._vgWidth = 0.4;
-    $scope._vgDepth = 3;
-    $scope._surface = 10;
-
+.controller('VoorraadCtrl', ['$scope', function ($scope) {
+    
 }]);

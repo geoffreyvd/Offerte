@@ -1,5 +1,5 @@
 app.controller('OudeOfferteCtrl', ['$scope', '$http', '$log', function ($scope, $http, $log) {
-    $scope.parentVariables[0].selectedMenu = 2;
+    $scope.parentVariables[0].selectedMenu = 1;
     $http.get("php/getOffertes.php").success(function (response) {
         $scope.WerkzaamhedenPHP = response.records;
     });

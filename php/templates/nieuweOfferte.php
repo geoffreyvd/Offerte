@@ -40,11 +40,13 @@
             </div>
         </div>
 
+
+        <button class="btn btn-primary pull-right" ng-click="addPerson()">New Item</button>
+
         <!-- button group -->
         <div class="text-center">
-            <div class="  btn-group">
+            <div class="btn-group">
                 <a ng-click="bekijkPDF();" class="hidden-print btn btn-default">Watch PDF</a>
-                <button class="btn btn-primary" ng-click="addPerson()">New Item</button>
                 <div class="btn-group">
                     <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
                         Save <span class="caret"></span>
@@ -58,6 +60,7 @@
                 </div>
             </div>
         </div>
+
     </div>
 </div>
 

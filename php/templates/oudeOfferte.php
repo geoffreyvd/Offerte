@@ -39,7 +39,7 @@
                 {{ Werkzaamheid.bedrijf }}
             </td>
             <td>
-                <button class="btn" type="button" ng-click="showWerkzaamheden(Werkzaamheid.ID)">kijk</button>
+                <button class="btn" type="button" ng-click="showWerkzaamheden(Werkzaamheid.ID)">Bekijk</button>
             </td>
         </tr>
     </tbody>

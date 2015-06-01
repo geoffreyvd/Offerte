@@ -76,7 +76,7 @@ app.controller('NieuweOfferteCtrl', ['$scope', '$http', '$log', function ($scope
     };
 
     $scope.selectedKlant = {};
-    $scope.parentVariables[0].selectedMenu = 1;
+    $scope.parentVariables[0].selectedMenu = 0;
     $scope.getKlanten();
     $scope.Werkzaamheden = $scope.offerteParent[0].Werkzaamheden;
     $scope.date = new Date();
