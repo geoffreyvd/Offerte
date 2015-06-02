@@ -15,7 +15,7 @@ app.controller('NieuweOfferteCtrl', ['$scope', '$http', '$log', function ($scope
         }, 500);
     };
 
-    $scope.addPerson = function () {
+    $scope.addWerkzaamheid = function () {
         $scope.bedrag = 0;
         var Werkzaamheid = {
             name: $scope.naam,
@@ -23,6 +23,16 @@ app.controller('NieuweOfferteCtrl', ['$scope', '$http', '$log', function ($scope
         };
         $scope.Werkzaamheden.push(Werkzaamheid);
     };
+    $scope.addTekst = function () {
+        $scope.bedrag = "0geen bedrag";
+        var Werkzaamheid = {
+            name: $scope.naam,
+            price: $scope.bedrag
+        };
+        $scope.Werkzaamheden.push(Werkzaamheid);
+    };
+    
+    
     $scope.removePerson = function (index) {
         $scope.Werkzaamheden.splice(index, 1);
     };
@@ -40,7 +50,32 @@ app.controller('NieuweOfferteCtrl', ['$scope', '$http', '$log', function ($scope
         return total;
     };
 
-    $scope.uploadOfferte = function () {
+    $scope.uploadHuidigeOfferte = function () {
+        //exception: als er geen offerte is geselecteerd is
+        if ($scope.parentVariables[0].offerteID === null) {
+            $log.warn("geen bestaande offerte geselecteerd");
+        } else {
+            $scope.request = $http({
+                method: "post",
+                url: "php/postCurrentOfferte.php",
+                data: {
+                    offerteid: $scope.parentVariables[0].offerteID,
+                    titel: $scope.parentVariables[0].titel,
+                    omschrijving: $scope.offerteParent[0].Offerte[0].omschrijving,
+                    werkzaamheden: $scope.Werkzaamheden,
+                    klantid: $scope.selectedKlant.clientID
+                },
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded'
+                }
+            });
+            $scope.request.success(function (data) {
+                $log.info("postCurrentOfferte.php succes! data: " + data);
+            });
+        };
+    };
+
+    $scope.uploadNieuweOfferte = function () {
         $scope.request = $http({
             method: "post",
             url: "php/postOfferte.php",

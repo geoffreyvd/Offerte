@@ -43,7 +43,8 @@ app.config(['$routeProvider',
     $scope.parentVariables = [
         {
             titel: "",
-            selectedMenu: null
+            selectedMenu: null,
+            offerteID: null
         }
     ];
     $scope.offerteParent = [

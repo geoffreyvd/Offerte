@@ -41,7 +41,14 @@
         </div>
 
 
-        <button class="btn btn-primary pull-right" ng-click="addPerson()">Nieuw werkzaamheid</button>
+        <div class="btn-group pull-right">
+            <button type="button" class="btn btn-primary" ng-click="addTekst();">
+                Tekst veld
+            </button>
+            <button type="button" class="btn btn-primary" ng-click="addWerkzaamheid();">
+                Nieuw werkzaamheid 
+            </button>
+        </div>
 
         <!-- button group -->
         <div class="text-center">
@@ -49,14 +56,14 @@
                 <a ng-click="bekijkPDF();" class="hidden-print btn btn-default">Bekijk PDF</a>
                 <div class="btn-group">
                     <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-                        Opslaan als<span class="caret"></span>
+                        Opslaan als <span class="caret"></span>
                     </button>
                     <ul class="dropdown-menu" role="menu">
                         <li>
-                            <a ng-click="uploadOfferte();" class="btn">huidige offerte</a>
+                            <a ng-click="uploadHuidigeOfferte();" class="btn">huidige offerte</a>
                         </li>
                         <li>
-                            <a ng-click="uploadOfferte();" class="btn">nieuwe offerte</a>
+                            <a ng-click="uploadNieuweOfferte();" class="btn">nieuwe offerte</a>
                         </li>
                     </ul>
                 </div>
@@ -103,7 +110,7 @@
                     {{ Werkzaamheid.name }}
                 </td>
                 <td class="col-sm-1">
-                    €{{ Werkzaamheid.price }}
+                    {{ Werkzaamheid.price === "0geen bedrag" ? "" : "€" + Werkzaamheid.price }}
                 </td>
             </tr>
         </tbody>

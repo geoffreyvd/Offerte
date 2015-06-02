@@ -4,6 +4,7 @@ app.controller('OudeOfferteCtrl', ['$scope', '$http', '$log', function ($scope, 
         $scope.WerkzaamhedenPHP = response.records;
     });
     $scope.showWerkzaamheden = function (ID) {
+        $scope.parentVariables[0].offerteID = ID;
         $log.info("offerte id: " + ID);
         $scope.request = $http({
             method: "post",
