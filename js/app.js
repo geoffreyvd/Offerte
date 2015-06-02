@@ -4,23 +4,23 @@ app.config(['$routeProvider',
   function ($routeProvider) {
         $routeProvider
             .when('/oudeoffertes', {
-                templateUrl: 'php/templates/oudeOfferte.php',
+                templateUrl: 'templates/oudeOfferte.html',
                 controller: 'OudeOfferteCtrl'
             })
             .when('/nieuweoffertes', {
-                templateUrl: 'php/templates/nieuweOfferte.php',
+                templateUrl: 'templates/nieuweOfferte.html',
                 controller: 'NieuweOfferteCtrl'
             })
             .when('/klanten', {
-                templateUrl: 'php/templates/klanten.php',
+                templateUrl: 'templates/klanten.html',
                 controller: 'KlantenCtrl'
             })
             .when('/voorraad', {
-                templateUrl: 'php/templates/voorraad.php',
+                templateUrl: 'templates/voorraad.html',
                 controller: 'VoorraadCtrl'
             })
             .when('/map', {
-                templateUrl: 'php/templates/map.php',
+                templateUrl: 'templates/map.html',
                 controller: 'MapCtrl'
             })
             .when('/', {

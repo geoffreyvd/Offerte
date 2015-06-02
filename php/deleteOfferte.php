@@ -12,5 +12,5 @@
     $query = "delete from werkzaamheden where OfferteID = $offerteID";   
     $OfferteID = delete($query);
 
-echo "succes delete offerte met id: $offerteID";
+    echo "succes delete offerte met id: $offerteID";
 ?>
