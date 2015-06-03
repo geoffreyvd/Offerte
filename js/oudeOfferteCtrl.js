@@ -1,8 +1,33 @@
 app.controller('OudeOfferteCtrl', ['$scope', '$http', '$log', function ($scope, $http, $log) {
     $scope.parentVariables[0].selectedMenu = 1;
+    
     $http.get("php/getOffertes.php").success(function (response) {
         $scope.WerkzaamhedenPHP = response.records;
     });
+    
+    $scope.zoekOfferte = function (zoekterm) {
+        console.log(zoekterm);
+        console.log("zoekOfferte functie");
+        $scope.request = $http({
+            method: "post",
+            url: "php/searchOfferte.php",
+            data: {
+                trefwoord: zoekterm
+            },
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded'
+            }
+        });
+        $scope.request.success(function (data) {
+            console.log("zoekOfferte.php succes! data: ", data);
+            $scope.WerkzaamhedenPHP = data.records;
+        });
+        $scope.request.error(function (data) {
+            console.log("zoekOfferte.php error! data: ", data);
+        });
+    };
+    
+    
     $scope.showWerkzaamheden = function (ID) {
         $scope.parentVariables[0].offerteID = ID;
         $log.info("offerte id: " + ID);

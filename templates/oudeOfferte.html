@@ -1,16 +1,26 @@
 <div class="divider">
     <h1>Oude offertes</h1>
     <div class="clearfix">
-        <div class="col-xs-3 pull-right searchbar">
-            <div class="input-group">
-                <input type="text" class="form-control" placeholder="Zoek naar offerte">
+        <div class="col-xs-3 pull-right searchbar hidden-xs">
+            <form class="input-group">
+                <input type="text" class="form-control" placeholder="Zoek naar offerte" ng-model="zoekTerm">
                 <span class="input-group-btn">
-        <button class="btn btn-default" type="button">Go!</button>
+        <button class="btn btn-default" ng-click="zoekOfferte(zoekTerm)" type="submit">Go!</button>
       </span>
-            </div>
+            </form>
             <!-- /input-group -->
         </div>
     </div>
+</div>
+
+<div class="col-xs-12 pull-right visible-xs">
+    <form class="input-group">
+        <input type="text" class="form-control" placeholder="Zoek naar offerte" ng-model="zoekTerm">
+        <span class="input-group-btn">
+        <button class="btn btn-default" ng-click="zoekOfferte(zoekTerm)" type="submit">Go!</button>
+      </span>
+    </form>
+    <!-- /input-group -->
 </div>
 <table class="table table-hover">
     <thead>
