@@ -2,7 +2,9 @@ i:hover {
     cursor: pointer;
     cursor: hand;
 }
-
+.searchbar{
+    margin-top: -44px;
+}
 .angular-google-map-container {
     height: 750px;
 }
@@ -40,7 +42,7 @@ i:hover {
     min-width: 200px;
 }
 
-h1 {
+.divider {
     padding-bottom: 3px;
     margin-bottom: 15px;
     border-bottom: 1px solid #eee;

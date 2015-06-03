@@ -77,7 +77,7 @@
     <img src="libs/images/Minty-Media-2015.png" class="img-responsive" alt="Logo">
     <div class="pull-left">
         <h5>Offerte naam: {{parentVariables[0].titel}} </h5>
-        <p>{{date | date:'yyyy-MM-dd'}}</p>
+        <p>datum: {{date | date:'yyyy-MM-dd'}}</p>
         <br>
     </div>
     <div class="clearfix">
@@ -103,6 +103,7 @@
                     Bedrag
                 </th>
             </tr>
+        </thead>
         </thead>
         <tbody>
             <tr ng-repeat="Werkzaamheid in Werkzaamheden">
