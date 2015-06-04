@@ -46,7 +46,7 @@
                 Tekst veld
             </button>
             <button type="button" class="btn btn-primary" ng-click="addWerkzaamheid();">
-                Nieuw werkzaamheid 
+                Nieuw werkzaamheid
             </button>
         </div>
 
@@ -88,7 +88,9 @@
         </div>
     </div>
     <br>
-    <p>Omschrijving: {{offerteParent[0].Offerte[0].omschrijving}}</p>
+    <p>Omschrijving:
+        <div ng-bind-html="offerteParent[0].Offerte[0].omschrijving | unsafe"></div>
+    </p>
     <br>
     <br>
 

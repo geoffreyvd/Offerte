@@ -31,6 +31,12 @@ app.config(['$routeProvider',
             });
     }])
 
+.filter('unsafe', function($sce) {
+    return function(val) {
+        return $sce.trustAsHtml(val);
+    };
+})
+
 .controller('ParentController', ['$scope', '$http', '$log', function ($scope, $http, $log) {
     "use strict";
 
@@ -78,7 +84,7 @@ app.config(['$routeProvider',
         },
         {
             mainMenuName: 'Klanten',
-            mainMenuIcon: 'fa-list-ul',
+            mainMenuIcon: 'fa-users',
             mainMenuLocation: '#/klanten'
         },
         {
