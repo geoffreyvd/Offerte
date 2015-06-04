@@ -24,19 +24,24 @@
         </div>
 
         <!-- werkzaamheden, prijs en delete knop-->
-        <div ng-repeat="Werkzaamheid in Werkzaamheden">
-            <hr>
-            <div class="col-md-9 col-sm-7 form-group">
-                <input class="form-control" type="text" ng-model="Werkzaamheid.name" placeholder="Werkzaamheden" />
-            </div>
-            <div class="col-md-2 col-sm-3 form-group">
-                <div class="input-group">
-                    <div class="input-group-addon">€</div>
-                    <input class="form-control" type="text" ng-model="Werkzaamheid.price" placeholder="Bedrag" />
+        <div ui-sortable ng-model="Werkzaamheden" style="clear: both;">
+            <div ng-repeat="Werkzaamheid in Werkzaamheden" style="cursor: move; height: 33px; clear: both;">
+                <div class="col-md-8 col-sm-7 form-group">
+                    <input class="form-control" type="text" ng-model="Werkzaamheid.name" placeholder="Werkzaamheden" />
                 </div>
-            </div>
-            <div class="col-md-1 col-sm-2 form-group">
-                <button class="btn" type="button" ng-click="removePerson($index)">Verwijder</button>
+                <div class="col-md-2 col-sm-3 form-group">
+                    <div class="input-group">
+                        <div class="input-group-addon">€</div>
+                        <input class="form-control" type="text" ng-model="Werkzaamheid.price" placeholder="Bedrag" />
+                    </div>
+                </div>
+                <div class="col-md-2 col-sm-2 form-group">
+                    <button class="btn col-xs-10" type="button" ng-click="removePerson($index)">Verwijder</button>
+                    
+                    <i class="fa fa-bars fa-2x col-xs-2" style="margin-left: 0px; margin-top: 3px;"></i>
+                
+                </div>
+                
             </div>
         </div>
 

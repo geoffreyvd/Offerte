@@ -1,4 +1,4 @@
-var app = angular.module('OfferteApp', ['ngRoute', 'uiGmapgoogle-maps']);
+var app = angular.module('OfferteApp', ['ngRoute', 'uiGmapgoogle-maps', 'ui.sortable']);
 
 app.config(['$routeProvider',
   function ($routeProvider) {
