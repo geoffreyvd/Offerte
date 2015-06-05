@@ -1,4 +1,6 @@
-<h1>Map</h1>
+<div class="divider">
+    <h1>Map</h1>
+</div>
 
 <div ng-controller="SearchBoxController">
     <div id="searchBoxParent"></div>
@@ -26,6 +28,7 @@
         </ui-gmap-google-map>
     </div>
     <div ng-repeat="marker in map.markers">
-        {{marker.name}}  <button class="btn" type="button" ng-click="removeMarker($index)">Verwijder</button>
+        {{marker.name}}
+        <button class="btn" type="button" ng-click="removeMarker($index)">Verwijder</button>
     </div>
 </div>
