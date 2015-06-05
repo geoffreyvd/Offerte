@@ -25,7 +25,7 @@
 
         <!-- werkzaamheden, prijs en delete knop-->
         <div ui-sortable ng-model="Werkzaamheden" style="clear: both;">
-            <div ng-repeat="Werkzaamheid in Werkzaamheden" style="cursor: move; height: 33px; clear: both;">
+            <div ng-repeat="Werkzaamheid in Werkzaamheden" class="werkParent">
                 <div class="col-md-8 col-sm-7 form-group">
                     <input class="form-control" type="text" ng-model="Werkzaamheid.name" placeholder="Werkzaamheden" />
                 </div>
@@ -38,7 +38,7 @@
                 <div class="col-md-2 col-sm-2 form-group">
                     <button class="btn col-xs-10" type="button" ng-click="removePerson($index)">Verwijder</button>
                     
-                    <i class="fa fa-bars fa-2x col-xs-2" style="margin-left: 0px; margin-top: 3px;"></i>
+                    <i class="fa fa-bars fa-2x col-xs-2 draggable"></i>
                 
                 </div>
                 
@@ -46,7 +46,7 @@
         </div>
 
 
-        <div class="btn-group pull-right">
+        <div class="btn-group pull-right" style="margin-right: 15px;">
             <button type="button" class="btn btn-primary" ng-click="addTekst();">
                 Tekst veld
             </button>

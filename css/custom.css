@@ -2,9 +2,18 @@ i:hover {
     cursor: pointer;
     cursor: hand;
 }
-.searchbar{
+
+.werkParent {
+    cursor: move;
+    overflow: hidden;
+    clear: both;
+    margin-bottom: 15px;
+}
+
+.searchbar {
     margin-top: -44px;
 }
+
 .angular-google-map-container {
     height: 750px;
 }
@@ -32,10 +41,6 @@ i:hover {
     border-width: 0 0 1px 0;
     padding-bottom: 35px;
     margin-bottom: 25px;
-}
-
-.row {
-    margin-right: 0;
 }
 
 .pull-right {
@@ -158,6 +163,22 @@ body {
     margin-right: 0;
 }
 /* font awesome custom shit */
+
+.draggable {
+    margin-left: 0px !important;
+    margin-top: 3px;
+    padding: 0;
+    padding-left: 5px;
+    padding-right: 5px;
+}
+
+.draggable.fa {
+    width: 0;
+}
+
+.draggable.fa:hover {
+    cursor: move;
+}
 
 .fa {
     width: 38px;

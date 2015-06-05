@@ -119,6 +119,7 @@ app.config(['$routeProvider',
             console.log("checkPass.php error! data: ", data);
         });
     };
+
 }])
 
 .controller('VoorraadCtrl', ['$scope', function ($scope) {
