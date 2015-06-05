@@ -48,24 +48,24 @@
         </div>
 
 
-        <div class="btn-group pull-right" style="margin-right: 15px;">
-            <button type="button" class="btn btn-primary" ng-click="addTekst();">
-                Tekst veld
+        <div class="btn-group pull-right col-xs-12 col-sm-5 col-md-4" style="">
+            <button type="button" class="btn btn-primary col-xs-6" ng-click="addWerkzaamheid();">
+                Voeg regel toe
             </button>
-            <button type="button" class="btn btn-primary" ng-click="addWerkzaamheid();">
-                Nieuw werkzaamheid
+            <button type="button" class="btn btn-primary col-xs-6" ng-click="addTekst();">
+                Voeg tekst toe
             </button>
         </div>
-
+        
         <!-- button group -->
         <div class="text-center">
-            <div class="btn-group">
-                <a ng-click="bekijkPDF();" class="hidden-print btn btn-default">Bekijk PDF</a>
-                <div class="btn-group">
-                    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+            <div class="btn-group col-xs-12 col-sm-5 col-md-4">
+                <a ng-click="bekijkPDF();" class="hidden-print btn btn-default col-xs-6">Bekijk PDF</a>
+                <div class="btn-group col-xs-6" style="padding: 0;">
+                    <button type="button" class="btn btn-default dropdown-toggle col-xs-12" data-toggle="dropdown">
                         Opslaan als <span class="caret"></span>
                     </button>
-                    <ul class="dropdown-menu" role="menu">
+                    <ul class="dropdown-menu col-xs-12" role="menu">
                         <li>
                             <a ng-click="uploadHuidigeOfferte();" class="btn">huidige offerte</a>
                         </li>
