@@ -9,8 +9,8 @@
     
     $titel = $request->titel;
     $klantid = $request->klantid;
-    $omschrijving = $request->omschrijving;
-    $datum = date("Y-m-d");   
+    $omschrijving = str_replace(array("\r\n", "\r", "\n"), "<br>", $request->omschrijving);
+    $datum = date("Y-m-d");
     $query .= " ('NULL', '$titel', '$omschrijving', '$datum', '$klantid')";
     ///run function post and check id, save offerteID 
     $OfferteID = post($query,true);

@@ -7,7 +7,7 @@
     $offerteID = $request->offerteid;
     $titel = $request->titel;
     $klantid = $request->klantid;
-    $omschrijving = $request->omschrijving;
+    $omschrijving = str_replace(array("\r\n", "\r", "\n"), "<br>", $request->omschrijving);
     $datum = date("Y-m-d");   
 
     ///post offerte with query to database
