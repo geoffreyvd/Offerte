@@ -1,4 +1,4 @@
-var app = angular.module('OfferteApp', ['ngRoute', 'uiGmapgoogle-maps', 'ui.sortable']);
+var app = angular.module('OfferteApp', ['ngRoute', 'uiGmapgoogle-maps', 'ui.sortable', 'xeditable']);
 
 app.config(['$routeProvider',
   function ($routeProvider) {
@@ -31,8 +31,12 @@ app.config(['$routeProvider',
             });
     }])
 
-.filter('unsafe', function($sce) {
-    return function(val) {
+.run(function (editableOptions) {
+    editableOptions.theme = 'bs3';
+})
+
+.filter('unsafe', function ($sce) {
+    return function (val) {
         return $sce.trustAsHtml(val);
     };
 })

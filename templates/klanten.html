@@ -27,27 +27,47 @@
         </tr>
     </thead>
     <tbody>
-        <tr ng-repeat="klant in alleKlanten">
+        <tr ng-repeat="klant in alleKlanten" ng-if="invoerKlanten">
             <td>
-                {{ klant.clientID }}
+                <a editable-text="klant.clientID">{{ klant.clientID || 'empty'}}</a>
             </td>
             <td>
-                {{ klant.contact }}
+                <a editable-text="klant.contact">{{ klant.contact || 'empty'}}</a>            
             </td>
             <td>
-                {{ klant.company }}
+                <a editable-text="klant.company">{{ klant.company || 'empty'}}</a>
             </td>
             <td>
-                {{ klant.address }}
+                <a editable-text="klant.address">{{ klant.address || 'empty'}}</a>
             </td>
             <td>
-                {{ klant.zipcode }}
+                <a editable-text="klant.zipcode">{{ klant.zipcode || 'empty'}}</a>
             </td>
             <td>
-                {{ klant.city }}
+                <a editable-text="klant.city">{{ klant.city || 'empty'}}</a>
             </td>
-            <td ng-if="invoerKlanten">
+            <td>
                 <i ng-click="deleteKlant(klant.clientID)" class="fa fa-trash-o"></i>
+            </td>
+        </tr>
+        <tr ng-repeat="klant in alleKlanten" ng-hide="invoerKlanten">
+            <td>
+                {{ klant.clientID || 'empty'}}
+            </td>
+            <td>
+                {{ klant.contact || 'empty'}}           
+            </td>
+            <td>
+                {{ klant.company || 'empty'}}
+            </td>
+            <td>
+                {{ klant.address || 'empty'}}
+            </td>
+            <td>
+                {{ klant.zipcode || 'empty'}}
+            </td>
+            <td>
+                {{ klant.city || 'empty'}}
             </td>
         </tr>
         <tr ng-if="invoerKlanten">
@@ -55,26 +75,26 @@
                 <input class="form-control" type="text" placeholder="A/I" disabled />
             </td>
             <td>
-                <input class="form-control" type="text" ng-model="nieuwklant.contactNaam" placeholder="Contact naam" />
+                <input class="form-control" type="text" ng-model="nieuwklant.contact" placeholder="Contact naam" />
             </td>
             <td>
-                <input class="form-control" type="text" ng-model="nieuwklant.bedrijfsNaam" placeholder="Bedrijfsnaam" />
+                <input class="form-control" type="text" ng-model="nieuwklant.company" placeholder="Bedrijfsnaam" />
             </td>
             <td>
-                <input class="form-control" type="text" ng-model="nieuwklant.adres" placeholder="Adres" />
+                <input class="form-control" type="text" ng-model="nieuwklant.address" placeholder="Adres" />
             </td>
             <td>
-                <input class="form-control" type="text" ng-model="nieuwklant.postcode" placeholder="Postcode" />
+                <input class="form-control" type="text" ng-model="nieuwklant.zipcode" placeholder="Postcode" />
             </td>
             <td>
-                <input class="form-control" type="text" ng-model="nieuwklant.stad" placeholder="Stad" />
+                <input class="form-control" type="text" ng-model="nieuwklant.city" placeholder="Stad" />
             </td>
         </tr>
     </tbody>
 </table>
 
 <div class="text-center">
-    <button class="btn btn-primary" ng-click="addKlant()">Nieuwe/verwijder klant</button>
+    <button class="btn btn-primary" ng-click="addKlant()">Tabel aanpassen</button>
     <button ng-if="invoerKlanten" class="btn btn-success" ng-click="saveKlant()">Opslaan</button>
 </div>
 
