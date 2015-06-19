@@ -41,6 +41,21 @@ app.config(['$routeProvider',
     };
 })
 
+.factory('alertsManager', function() {
+    return {
+        alerts: {},
+        addAlert: function(message, type) {
+            this.alerts[type] = this.alerts[type] || [];
+            this.alerts[type].push(message);
+        },
+        clearAlerts: function() {
+            for(var x in this.alerts) {
+           delete this.alerts[x];
+        }
+        }
+    };
+})
+
 .controller('ParentController', ['$scope', '$http', '$log', function ($scope, $http, $log) {
     "use strict";
 
@@ -102,7 +117,7 @@ app.config(['$routeProvider',
             mainMenuLocation: '#/map'
         }
     ];
-
+    $scope.ingelogd = true;
     $scope.checkPass = function (paswoord) {
         $scope.request3 = $http({
             method: "post",
@@ -132,21 +147,4 @@ app.config(['$routeProvider',
 
 .controller('MapCtrl', ['$scope', function ($scope) {
     $scope.parentVariables[0].selectedMenu = 4;
-    /* $scope.map = {
-         center: {
-             latitude: 52.3941,
-             longitude: 4.6668
-         },
-         zoom: 8
-     };
-     $scope.options = {
-         scrollwheel: false
-     };
-     var events = {
-         places_changed: function (searchBox) {}
-     }
-     $scope.searchbox = {
-         template: 'searchbox.tpl.html',
-         events: events
-     };*/
 }]);

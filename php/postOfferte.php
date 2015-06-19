@@ -13,7 +13,7 @@
     $datum = date("Y-m-d");
     $query .= " ('NULL', '$titel', '$omschrijving', '$datum', '$klantid')";
     ///run function post and check id, save offerteID 
-    $OfferteID = post($query,true);
+    $OfferteID = cleanPost($query,true);
 
     ///post werkzaamheden with query to database
     $query = "insert into werkzaamheden (WerkzaamheidID, WerkzaamheidTitel, WerkzaamheidPrijs, OfferteID) values";
@@ -27,5 +27,5 @@
         }                
     }
 
-    post($query, false);
+    cleanPost($query, false);
 ?>

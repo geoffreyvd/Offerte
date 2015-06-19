@@ -34,6 +34,20 @@
             printf(" UNsuccesfull query: '$tempQuery'\n");
         }
     }
+
+    function cleanPost($tempQuery, $checkID){
+        $mysqli = new mysqli(DB_HOST, DB_USERNAME, DB_PASSWORD, DB_NAME);
+        if ($mysqli->query("$tempQuery") === TRUE) {
+            if( $checkID === true){
+                printf ($mysqli->insert_id);
+                return($mysqli->insert_id);
+            }
+        }
+        else{ 
+            printf(" UNsuccesfull query: '$tempQuery'\n");
+        }
+    }
+
     function delete($tempQuery){
         $mysqli = new mysqli(DB_HOST, DB_USERNAME, DB_PASSWORD, DB_NAME);
         if ($mysqli->query("$tempQuery") === TRUE) {

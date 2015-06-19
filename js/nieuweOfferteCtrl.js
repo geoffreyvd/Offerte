@@ -1,4 +1,4 @@
-app.controller('NieuweOfferteCtrl', ['$scope', '$http', '$log', function ($scope, $http, $log) {
+app.controller('NieuweOfferteCtrl', ['$scope', '$http', '$log', 'alertsManager', function ($scope, $http, $log, alertsManager) {
     "use strict";
     $scope.bekijkPDF = function () {
         if ($scope.parentVariables[0].titel === "") {
@@ -31,8 +31,8 @@ app.controller('NieuweOfferteCtrl', ['$scope', '$http', '$log', function ($scope
         };
         $scope.Werkzaamheden.push(Werkzaamheid);
     };
-    
-    
+
+
     $scope.removePerson = function (index) {
         $scope.Werkzaamheden.splice(index, 1);
     };
@@ -53,7 +53,8 @@ app.controller('NieuweOfferteCtrl', ['$scope', '$http', '$log', function ($scope
     $scope.uploadHuidigeOfferte = function () {
         //exception: als er geen offerte is geselecteerd is
         if ($scope.parentVariables[0].offerteID === null) {
-            $log.warn("geen bestaande offerte geselecteerd");
+            $log.warn("Geen bestaande offerte geselecteerd");
+            alertsManager.addAlert('Geen bestaande offerte geselecteerd', 'alert-danger');
         } else {
             $scope.request = $http({
                 method: "post",
@@ -71,6 +72,7 @@ app.controller('NieuweOfferteCtrl', ['$scope', '$http', '$log', function ($scope
             });
             $scope.request.success(function (data) {
                 $log.info("postCurrentOfferte.php succes! data: " + data);
+                alertsManager.addAlert('Bestaande offerte overschreven, offerte ID:' + $scope.parentVariables[0].offerteID, 'alert-success');
             });
         };
     };
@@ -91,6 +93,7 @@ app.controller('NieuweOfferteCtrl', ['$scope', '$http', '$log', function ($scope
         });
         $scope.request.success(function (data) {
             $log.info("postOfferte.php succes! data: " + data);
+            alertsManager.addAlert('Nieuwe offerte opgeslagen, offerte ID:' + data, 'alert-success');
         });
     };
 
@@ -115,4 +118,6 @@ app.controller('NieuweOfferteCtrl', ['$scope', '$http', '$log', function ($scope
     $scope.getKlanten();
     $scope.Werkzaamheden = $scope.offerteParent[0].Werkzaamheden;
     $scope.date = new Date();
+
+    $scope.alerts = alertsManager.alerts;
 }]);
