@@ -2,8 +2,8 @@
 <div class="hidden-print invoer">
     <div class="divider">
         <h1 class="col-sm-6 col-md-4">Offerte Maken</h1>
-        <div ng-repeat="(key,val) in alerts" style="margin-top:10px; margin-bottom:0px;" class="col-xs-12 col-sm-6 col-md-4 pull-right alert {{key}}" role="alert">
-            <div ng-repeat="msg in val">{{msg}}</div>
+        <div ng-repeat="(key,val) in alerts" style="margin-top:10px; margin-bottom:0px;" class="col-xs-12 col-sm-6 col-md-4 pull-right alert {{key}} animate-repeat" role="alert">
+            <div ng-repeat="msg in val" class="animate-repeat">{{msg}}</div>
         </div>
         <div class="clearfix"></div>
     </div>

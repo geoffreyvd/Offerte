@@ -49,12 +49,19 @@ app.controller('NieuweOfferteCtrl', ['$scope', '$http', '$log', 'alertsManager',
         }
         return total;
     };
-
+    $scope.fadeAlerts = function () {
+        setTimeout(function () {
+            $scope.$apply(function () {
+                alertsManager.clearAlerts();
+            });
+        }, 4000);
+    };
     $scope.uploadHuidigeOfferte = function () {
         //exception: als er geen offerte is geselecteerd is
         if ($scope.parentVariables[0].offerteID === null) {
             $log.warn("Geen bestaande offerte geselecteerd");
             alertsManager.addAlert('Geen bestaande offerte geselecteerd', 'alert-danger');
+            $scope.fadeAlerts();
         } else {
             $scope.request = $http({
                 method: "post",
@@ -73,6 +80,7 @@ app.controller('NieuweOfferteCtrl', ['$scope', '$http', '$log', 'alertsManager',
             $scope.request.success(function (data) {
                 $log.info("postCurrentOfferte.php succes! data: " + data);
                 alertsManager.addAlert('Bestaande offerte overschreven, offerte ID:' + $scope.parentVariables[0].offerteID, 'alert-success');
+                $scope.fadeAlerts();
             });
         };
     };
@@ -94,6 +102,7 @@ app.controller('NieuweOfferteCtrl', ['$scope', '$http', '$log', 'alertsManager',
         $scope.request.success(function (data) {
             $log.info("postOfferte.php succes! data: " + data);
             alertsManager.addAlert('Nieuwe offerte opgeslagen, offerte ID:' + data, 'alert-success');
+            $scope.fadeAlerts();
         });
     };
 

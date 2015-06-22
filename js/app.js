@@ -1,4 +1,4 @@
-var app = angular.module('OfferteApp', ['ngRoute', 'uiGmapgoogle-maps', 'ui.sortable', 'xeditable']);
+var app = angular.module('OfferteApp', ['ngRoute', 'ngAnimate', 'uiGmapgoogle-maps', 'ui.sortable', 'xeditable']);
 
 app.config(['$routeProvider',
   function ($routeProvider) {
@@ -41,17 +41,29 @@ app.config(['$routeProvider',
     };
 })
 
-.factory('alertsManager', function() {
+.factory('alertsManager', function () {
     return {
         alerts: {},
-        addAlert: function(message, type) {
+        addAlert: function (message, type) {
             this.alerts[type] = this.alerts[type] || [];
             this.alerts[type].push(message);
         },
-        clearAlerts: function() {
-            for(var x in this.alerts) {
-           delete this.alerts[x];
-        }
+        clearAlerts: function () {
+            console.log(this.alerts);
+            if (typeof this.alerts["alert-danger"] !== "undefined") {
+                this.alerts["alert-danger"].shift();
+                if (this.alerts["alert-danger"].length === 0) {
+                    delete this.alerts["alert-danger"];
+                };
+            };
+            if (typeof this.alerts["alert-success"] !== "undefined") {
+                this.alerts["alert-success"].shift();
+                if (this.alerts["alert-success"].length === 0) {
+                    delete this.alerts["alert-success"];
+                };
+            };
+
+
         }
     };
 })
@@ -132,7 +144,6 @@ app.config(['$routeProvider',
         $scope.request3.success(function (data) {
             console.log("checkPass.php succes! data: ", data);
             $scope.ingelogd = data;
-
         });
         $scope.request3.error(function (data) {
             console.log("checkPass.php error! data: ", data);
