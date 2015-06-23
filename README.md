@@ -20,7 +20,7 @@ I am an intern at MintyMedia, a small webdevelopment company.
 This is the project I am currently working on, this is also the end project for school.
 
 Old web interface: http://imgur.com/lhFYQPD <br>
-<b>Current U/I:</b> http://i.imgur.com/2jBb6ef.png 
+<b>Current U/I:</b> http://i.imgur.com/2jBb6ef.png <br>
 Output('Bekijk PDF' button): http://imgur.com/hUgqQ9h
 
 # Setup
