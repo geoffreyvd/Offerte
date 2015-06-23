@@ -15,6 +15,10 @@ app.config(['$routeProvider',
                 templateUrl: 'templates/klanten.html',
                 controller: 'KlantenCtrl'
             })
+            .when('/producten', {
+                templateUrl: 'templates/producten.html',
+                controller: 'productenCtrl'
+            })
             .when('/voorraad', {
                 templateUrl: 'templates/voorraad.html',
                 controller: 'VoorraadCtrl'
@@ -49,7 +53,6 @@ app.config(['$routeProvider',
             this.alerts[type].push(message);
         },
         clearAlerts: function () {
-            console.log(this.alerts);
             if (typeof this.alerts["alert-danger"] !== "undefined") {
                 this.alerts["alert-danger"].shift();
                 if (this.alerts["alert-danger"].length === 0) {
@@ -62,8 +65,6 @@ app.config(['$routeProvider',
                     delete this.alerts["alert-success"];
                 };
             };
-
-
         }
     };
 })
@@ -73,6 +74,26 @@ app.config(['$routeProvider',
 
     $scope.handleMenuClicked = function (index) {
         $scope.parentVariables[0].selectedMenu = index;
+    };
+
+    $scope.checkPass = function (paswoord) {
+        $scope.request3 = $http({
+            method: "post",
+            url: "php/checkPassword.php",
+            data: {
+                wachtwoord: paswoord
+            },
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded'
+            }
+        });
+        $scope.request3.success(function (data) {
+            console.log("checkPass.php succes! data: ", data);
+            $scope.ingelogd = data;
+        });
+        $scope.request3.error(function (data) {
+            console.log("checkPass.php error! data: ", data);
+        });
     };
 
     //default variables
@@ -119,6 +140,11 @@ app.config(['$routeProvider',
             mainMenuLocation: '#/klanten'
         },
         {
+            mainMenuName: 'Producten',
+            mainMenuIcon: 'fa-table',
+            mainMenuLocation: '#/producten'
+        },
+        {
             mainMenuName: 'Voorraad',
             mainMenuIcon: 'fa-shopping-cart',
             mainMenuLocation: '#/voorraad'
@@ -129,33 +155,15 @@ app.config(['$routeProvider',
             mainMenuLocation: '#/map'
         }
     ];
+    
     $scope.ingelogd = true;
-    $scope.checkPass = function (paswoord) {
-        $scope.request3 = $http({
-            method: "post",
-            url: "php/checkPassword.php",
-            data: {
-                wachtwoord: paswoord
-            },
-            headers: {
-                'Content-Type': 'application/x-www-form-urlencoded'
-            }
-        });
-        $scope.request3.success(function (data) {
-            console.log("checkPass.php succes! data: ", data);
-            $scope.ingelogd = data;
-        });
-        $scope.request3.error(function (data) {
-            console.log("checkPass.php error! data: ", data);
-        });
-    };
-
+    
 }])
 
 .controller('VoorraadCtrl', ['$scope', function ($scope) {
-    $scope.parentVariables[0].selectedMenu = 3;
+    $scope.parentVariables[0].selectedMenu = 4;
 }])
 
 .controller('MapCtrl', ['$scope', function ($scope) {
-    $scope.parentVariables[0].selectedMenu = 4;
+    $scope.parentVariables[0].selectedMenu = 5;
 }]);

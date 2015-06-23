@@ -285,27 +285,57 @@ body {
     max-width: inherit;
 }
 /* ng-repeat animation for alert */
-.alert{
+
+.alert {
     min-height: 52px;
 }
 
 .animate-repeat.ng-move,
 .animate-repeat.ng-enter,
 .animate-repeat.ng-leave {
-  -webkit-transition:all linear 0.5s;
-  transition:all linear 0.5s;
+    -webkit-transition: all linear 0.5s;
+    transition: all linear 0.5s;
 }
 
 .animate-repeat.ng-leave.ng-leave-active,
 .animate-repeat.ng-move,
 .animate-repeat.ng-enter {
-  opacity:0;
-  max-height:0;
+    opacity: 0;
+    max-height: 0;
 }
 
 .animate-repeat.ng-leave,
 .animate-repeat.ng-move.ng-move-active,
 .animate-repeat.ng-enter.ng-enter-active {
-  opacity:1;
-  max-height:40px;
+    opacity: 1;
+    max-height: 40px;
+}
+/* button group */
+
+.dropdown-lead {
+    width: 100%;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+}
+
+.leadcontainer {
+    left: 0;
+    position: absolute;
+    right: 30px;
+}
+
+.fixed-dropdown-toggle {
+    width: 30px;
+    float: right !important;
+    box-sizing: border-box;
+}
+
+.fillsplit {
+    position: relative;
+    padding-right: 1px;
+}
+.werkzm-dropdown {
+    height: 100px;
+    width: 100%;
+    overflow-y: auto;
 }

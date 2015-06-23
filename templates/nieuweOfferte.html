@@ -42,7 +42,7 @@
                     </div>
                 </div>
                 <div class="col-md-2 col-sm-2 form-group">
-                    <button class="btn col-xs-10" type="button" ng-click="removePerson($index)">Verwijder</button>
+                    <button class="btn col-xs-10" type="button" ng-click="deleteRow($index)">Verwijder</button>
 
                     <i class="fa fa-bars fa-2x col-xs-2 draggable"></i>
 
@@ -52,13 +52,49 @@
         </div>
 
 
-        <div class="btn-group pull-right col-xs-12 col-sm-5 col-md-4" style="">
-            <button type="button" class="btn btn-primary col-xs-6" ng-click="addWerkzaamheid();">
-                Voeg regel toe
-            </button>
+        <!--<div class="btn-group pull-right col-xs-12 col-sm-5 col-md-4" style="">
+            <div class="btn-group col-xs-6 " style="padding: 0;">
+                <button type="button" class="btn btn-primary dropdown-toggle col-xs-10" ng-click="addWerkzaamheid();">
+                    Opslaan als
+                </button>
+                <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+                    <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu col-xs-12" role="menu">
+                    <li>
+                        <a ng-click="uploadHuidigeOfferte();" class="btn">huidige offerte</a>
+                    </li>
+                    <li>
+                        <a ng-click="uploadNieuweOfferte();" class="btn">nieuwe offerte</a>
+                    </li>
+                </ul>
+            </div>
             <button type="button" class="btn btn-primary col-xs-6" ng-click="addTekst();">
                 Voeg tekst toe
             </button>
+        </div>-->
+
+        <div class="btn-group pull-right col-xs-12 col-sm-5 col-md-4" style="">
+            <button type="button" class="btn btn-primary col-xs-6" ng-click="addTekst();">
+                Voeg tekst toe
+            </button>
+            <div class="btn-group col-xs-6 fillsplit">
+                <div class="leadcontainer">
+                    <button class="btn btn-primary col-xs-6 dropdown-lead" type="button" ng-click="addWerkzaamheid();">
+                        Voeg regel toe
+                    </button>
+                </div>
+                <a class="btn btn-primary dropdown-toggle fixed-dropdown-toggle" data-toggle="dropdown"><span class="caret"></span></a>
+                <div class="clearfix"></div>
+                <ul class="dropdown-menu werkzm-dropdown">
+                    <li><a> Website</a>
+                    </li>
+                    <li><a>SEO</a>
+                    </li>
+                    <li><a>Abbonoment domein</a>
+                    </li>
+                </ul>
+            </div>
         </div>
 
         <!-- button group -->

@@ -1,0 +1,85 @@
+<div class="divider">
+    <h1>Producten</h1>
+</div>
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th class="col-xs-1">
+                ID
+            </th>
+            <th class="col-xs-8">
+                Titel
+            </th>
+            <th class="col-xs-2">
+                Prijs
+            </th>
+            <th class="col-xs-1">
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr ng-repeat="product in alleProducten" ng-if="invoerProducten">
+            <td>
+                <a editable-text="product.id">{{ product.id || 'empty'}}</a>
+            </td>
+            <td>
+                <a editable-text="product.titel">{{ product.titel || 'empty'}}</a>            
+            </td>
+            <td>
+                <a editable-text="product.prijs">{{ product.prijs || 'empty'}}</a>
+            </td>
+            <td>
+                <i ng-click="deleteProduct(product.id)" class="fa fa-trash-o"></i>
+            </td>
+        </tr>
+        <tr ng-repeat="product in alleProducten" ng-hide="invoerProducten">
+            <td>
+                {{ product.id || 'empty'}}
+            </td>
+            <td>
+                {{ product.titel || 'empty'}}           
+            </td>
+            <td>
+                {{ product.prijs || 'empty'}}
+            </td>
+            <td>
+            </td>
+        </tr>
+        <tr ng-if="invoerProducten">
+            <td>
+                <input class="form-control" type="text" placeholder="A/I" disabled />
+            </td>
+            <td>
+                <input class="form-control" type="text" ng-model="nieuwProduct.titel" placeholder="titel" />
+            </td>
+            <td>
+                <input class="form-control" type="text" ng-model="nieuwProduct.prijs" placeholder="prijs" />
+            </td>
+            <td></td>
+        </tr>
+    </tbody>
+</table>
+
+<div class="text-center">
+    <button class="btn btn-primary" ng-click="editProduct()">producten aanpassen</button>
+    <button ng-if="invoerProducten" class="btn btn-success" ng-click="saveProduct()">Opslaan</button>
+</div>
+
+<!-- Modal popup -->
+<div id="bevestigModal" class="modal fade">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">Bevestiging</h4>
+            </div>
+            <div class="modal-body">
+                <p>Weet u zeker dat u dit product wilt verwijderen: {{productid}}</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Sluit</button>
+                <button ng-click="deleteProduct2()" type="submit" class="btn btn-primary" data-dismiss="modal">Verwijder product</button>
+            </div>
+        </div>
+    </div>
+</div>

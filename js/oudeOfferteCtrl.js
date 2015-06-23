@@ -1,10 +1,9 @@
-app.controller('OudeOfferteCtrl', ['$scope', '$http', '$log', function ($scope, $http, $log) {
-    $scope.parentVariables[0].selectedMenu = 1;
-    
+app.controller('OudeOfferteCtrl', ['$scope', '$http', '$log', 'alertsManager', function ($scope, $http, $log, alertsManager) {    
+
     $http.get("php/getOffertes.php").success(function (response) {
         $scope.WerkzaamhedenPHP = response.records;
     });
-    
+
     $scope.zoekOfferte = function (zoekterm) {
         console.log(zoekterm);
         console.log("zoekOfferte functie");
@@ -26,8 +25,7 @@ app.controller('OudeOfferteCtrl', ['$scope', '$http', '$log', function ($scope, 
             console.log("zoekOfferte.php error! data: ", data);
         });
     };
-    
-    
+
     $scope.showWerkzaamheden = function (ID) {
         $scope.parentVariables[0].offerteID = ID;
         $log.info("offerte id: " + ID);
@@ -49,6 +47,8 @@ app.controller('OudeOfferteCtrl', ['$scope', '$http', '$log', function ($scope, 
 
             console.log("klantID : " + $scope.offerteParent[0].Offerte[0].klantID);
 
+            alertsManager.addAlert('Bestaande offerte overschreven, offerte ID:' + $scope.parentVariables[0].offerteID, 'alert-success');
+            $scope.fadeAlerts();
             window.location = "#/nieuweoffertes";
         });
         $scope.request.error(function (data) {
@@ -56,10 +56,12 @@ app.controller('OudeOfferteCtrl', ['$scope', '$http', '$log', function ($scope, 
             console.log("data werkzaamheden: ", data.werkzaamheden);
         });
     };
+
     $scope.deleteOfferte = function (werkzaamheidID) {
         $scope.werkzaamheidID = werkzaamheidID;
         $("#bevestigOfferteModal").modal('show');
     };
+
     $scope.deleteOfferte2 = function () {
         $scope.request = $http({
             method: "post",
@@ -81,4 +83,15 @@ app.controller('OudeOfferteCtrl', ['$scope', '$http', '$log', function ($scope, 
             console.log("deleteOfferte.php error! data: ", data);
         });
     };
+
+    $scope.fadeAlerts = function () {
+        setTimeout(function () {
+            $scope.$apply(function () {
+                alertsManager.clearAlerts();
+            });
+        }, 4000);
+    };
+    
+    $scope.parentVariables[0].selectedMenu = 1;
+    
 }]);

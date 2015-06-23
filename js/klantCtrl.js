@@ -1,4 +1,5 @@
 app.controller('KlantenCtrl', ['$scope', '$http', function ($scope, $http) {
+
     $scope.refreshKlanten = function () {
         $scope.request = $http({
             method: "post",
@@ -16,10 +17,16 @@ app.controller('KlantenCtrl', ['$scope', '$http', function ($scope, $http) {
             console.log("error! data: ", data);
         });
     };
+
+    $scope.addKlant = function () {
+        $scope.invoerKlanten = !$scope.invoerKlanten;
+    };
+
     $scope.deleteKlant = function (klantid) {
         $scope.klantid = klantid;
         $("#bevestigModal").modal('show');
     };
+
     $scope.deleteKlant2 = function () {
         $scope.request = $http({
             method: "post",
@@ -40,12 +47,12 @@ app.controller('KlantenCtrl', ['$scope', '$http', function ($scope, $http) {
         });
     };
 
-    $scope.addKlant = function () {
-        $scope.invoerKlanten = !$scope.invoerKlanten;
-    };
     $scope.saveKlant = function () {
-        console.log($scope.nieuwklant);
-        $scope.alleKlanten.push($scope.nieuwklant);
+        //check if nieuwproduct is valid
+        if (!jQuery.isEmptyObject($scope.nieuwklant)) {
+            console.log($scope.nieuwklant);
+            $scope.alleKlanten.push($scope.nieuwklant);
+        };
         ///sla alle klanten, inclusief aangepaste klanten, op in de database
         $scope.request = $http({
             method: "post",
@@ -62,11 +69,11 @@ app.controller('KlantenCtrl', ['$scope', '$http', function ($scope, $http) {
         $scope.request.error(function (data) {
             console.log("postAllKlanten.php error! data: ", data);
         });
-        
+
         $scope.invoerKlanten = !$scope.invoerKlanten;
     };
 
-    $scope.refreshKlanten();    
+    $scope.refreshKlanten();
     $scope.nieuwklant = {};
     $scope.parentVariables[0].selectedMenu = 2;
 }]);

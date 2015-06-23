@@ -1,5 +1,6 @@
 app.controller('NieuweOfferteCtrl', ['$scope', '$http', '$log', 'alertsManager', function ($scope, $http, $log, alertsManager) {
     "use strict";
+
     $scope.bekijkPDF = function () {
         if ($scope.parentVariables[0].titel === "") {
             $("#myModal").modal('show');
@@ -7,6 +8,7 @@ app.controller('NieuweOfferteCtrl', ['$scope', '$http', '$log', 'alertsManager',
             print();
         }
     };
+
     $scope.veranderTitel = function () {
         ///handling modal
         $scope.parentVariables[0].titel = $scope.nieuweTitel;
@@ -23,6 +25,7 @@ app.controller('NieuweOfferteCtrl', ['$scope', '$http', '$log', 'alertsManager',
         };
         $scope.Werkzaamheden.push(Werkzaamheid);
     };
+
     $scope.addTekst = function () {
         $scope.bedrag = "0geen bedrag";
         var Werkzaamheid = {
@@ -32,8 +35,7 @@ app.controller('NieuweOfferteCtrl', ['$scope', '$http', '$log', 'alertsManager',
         $scope.Werkzaamheden.push(Werkzaamheid);
     };
 
-
-    $scope.removePerson = function (index) {
+    $scope.deleteRow = function (index) {
         $scope.Werkzaamheden.splice(index, 1);
     };
 
@@ -49,13 +51,7 @@ app.controller('NieuweOfferteCtrl', ['$scope', '$http', '$log', 'alertsManager',
         }
         return total;
     };
-    $scope.fadeAlerts = function () {
-        setTimeout(function () {
-            $scope.$apply(function () {
-                alertsManager.clearAlerts();
-            });
-        }, 4000);
-    };
+
     $scope.uploadHuidigeOfferte = function () {
         //exception: als er geen offerte is geselecteerd is
         if ($scope.parentVariables[0].offerteID === null) {
@@ -82,6 +78,12 @@ app.controller('NieuweOfferteCtrl', ['$scope', '$http', '$log', 'alertsManager',
                 alertsManager.addAlert('Bestaande offerte overschreven, offerte ID:' + $scope.parentVariables[0].offerteID, 'alert-success');
                 $scope.fadeAlerts();
             });
+            $scope.request.error(function (data) {
+                $log.info("postCurrentOfferte.php error! data: " + data);
+                alertsManager.addAlert('Fout opgetreden bij het opslaan van de offerte, check console', 'alert-error');
+                $scope.fadeAlerts();
+            });
+
         };
     };
 
@@ -104,6 +106,11 @@ app.controller('NieuweOfferteCtrl', ['$scope', '$http', '$log', 'alertsManager',
             alertsManager.addAlert('Nieuwe offerte opgeslagen, offerte ID:' + data, 'alert-success');
             $scope.fadeAlerts();
         });
+        $scope.request.error(function (data) {
+            $log.info("postOfferte.php error! data: " + data);
+            alertsManager.addAlert('Fout opgetreden bij het opslaan van de offerte, check console', 'alert-error');
+            $scope.fadeAlerts();
+        });
     };
 
     $scope.getKlanten = function () {
@@ -120,6 +127,19 @@ app.controller('NieuweOfferteCtrl', ['$scope', '$http', '$log', 'alertsManager',
             $scope.klanten = data.klanten;
             $scope.selectedKlant = $scope.klanten[$scope.offerteParent[0].Offerte[0].klantID - 1];
         });
+        $scope.request.error(function (data) {
+            console.log("getKlanten.php error! data: ", data);
+            alertsManager.addAlert('Fout opgetreden bij het ophalen van de klanten, check console', 'alert-error');
+            $scope.fadeAlerts();
+        });
+    };
+
+    $scope.fadeAlerts = function () {
+        setTimeout(function () {
+            $scope.$apply(function () {
+                alertsManager.clearAlerts();
+            });
+        }, 4000);
     };
 
     $scope.selectedKlant = {};
@@ -127,6 +147,5 @@ app.controller('NieuweOfferteCtrl', ['$scope', '$http', '$log', 'alertsManager',
     $scope.getKlanten();
     $scope.Werkzaamheden = $scope.offerteParent[0].Werkzaamheden;
     $scope.date = new Date();
-
     $scope.alerts = alertsManager.alerts;
 }]);
