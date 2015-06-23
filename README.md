@@ -19,7 +19,8 @@ Future feature's:
 I am an intern at MintyMedia, a small webdevelopment company.
 This is the project I am currently working on, this is also the end project for school.
 
-Web interface: http://imgur.com/lhFYQPD <br>
+Old web interface: http://imgur.com/lhFYQPD <br>
+<b>Current U/I:</b> http://i.imgur.com/2jBb6ef.png 
 Output('Bekijk PDF' button): http://imgur.com/hUgqQ9h
 
 # Setup
