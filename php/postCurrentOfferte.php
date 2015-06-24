@@ -5,9 +5,9 @@
     include 'functions.php';    
     
     $offerteID = $request->offerteid;
-    $titel = $request->titel;
+    $titel = addslashes($request->titel);
     $klantid = $request->klantid;
-    $omschrijving = str_replace(array("\r\n", "\r", "\n"), "<br>", $request->omschrijving);
+    $omschrijving = str_replace(array("\r\n", "\r", "\n"), "<br>", addslashes($request->omschrijving));
     $datum = date("Y-m-d");   
 
     ///post offerte with query to database
@@ -24,10 +24,10 @@
     $werkzaamheden = $request->werkzaamheden;
     foreach($werkzaamheden as $key=>$value){
         if($key == 0){            
-            $query .=  "('NULL', '$value->name', '$value->price', '$offerteID')";
+            $query .=  "('NULL', '" . addslashes($value->name) . "', '$value->price', '$offerteID')";
         }
         else{            
-            $query .=  ",('NULL', '$value->name', '$value->price', '$offerteID')";            
+            $query .=  ",('NULL','" . addslashes($value->name) . "', '$value->price', '$offerteID')";            
         }                
     }
     post($query, false);

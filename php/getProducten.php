@@ -3,7 +3,7 @@
     $request = json_decode($postdata);    
     include 'functions.php';
 
-    $query = "SELECT * FROM `Producten`" ;     
+    $query = "SELECT * FROM `producten`" ;     
     $resultaat = get($query);
 
     $outp = "";
