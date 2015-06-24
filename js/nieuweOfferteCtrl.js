@@ -25,7 +25,15 @@ app.controller('NieuweOfferteCtrl', ['$scope', '$http', '$log', 'alertsManager',
         };
         $scope.Werkzaamheden.push(Werkzaamheid);
     };
-
+    
+    $scope.addProduct = function (titel,prijs) {
+        var Werkzaamheid = {
+            name: titel,
+            price: prijs
+        };
+        $scope.Werkzaamheden.push(Werkzaamheid);
+    };
+    
     $scope.addTekst = function () {
         $scope.bedrag = "0geen bedrag";
         var Werkzaamheid = {
@@ -142,6 +150,26 @@ app.controller('NieuweOfferteCtrl', ['$scope', '$http', '$log', 'alertsManager',
         }, 4000);
     };
 
+    ///get products, pre-defined products in a list
+    $scope.refreshProducten = function () {
+        $scope.request = $http({
+            method: "post",
+            url: "php/getProducten.php",
+            data: {},
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded'
+            }
+        });
+        $scope.request.success(function (data) {
+            console.log("getProducten.php succes! data: ", data);
+            $scope.producten = data.producten;
+        });
+        $scope.request.error(function (data) {
+            console.log("getProducten error! data: ", data);
+        });
+    };
+    
+    $scope.refreshProducten();
     $scope.selectedKlant = {};
     $scope.parentVariables[0].selectedMenu = 0;
     $scope.getKlanten();

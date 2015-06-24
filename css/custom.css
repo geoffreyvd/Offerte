@@ -335,7 +335,16 @@ body {
     padding-right: 1px;
 }
 .werkzm-dropdown {
-    height: 100px;
     width: 100%;
     overflow-y: auto;
+}
+
+
+
+.lijst-kolom-2 {
+    float:right;
+}
+
+.lijst-kolom-1 {
+    float:left;
 }

@@ -43,9 +43,7 @@
                 </div>
                 <div class="col-md-2 col-sm-2 form-group">
                     <button class="btn col-xs-10" type="button" ng-click="deleteRow($index)">Verwijder</button>
-
                     <i class="fa fa-bars fa-2x col-xs-2 draggable"></i>
-
                 </div>
 
             </div>
@@ -87,11 +85,8 @@
                 <a class="btn btn-primary dropdown-toggle fixed-dropdown-toggle" data-toggle="dropdown"><span class="caret"></span></a>
                 <div class="clearfix"></div>
                 <ul class="dropdown-menu werkzm-dropdown">
-                    <li><a> Website</a>
-                    </li>
-                    <li><a>SEO</a>
-                    </li>
-                    <li><a>Abbonoment domein</a>
+                    <li ng-repeat="product in producten">
+                        <a ng-click="addProduct(product.titel,product.prijs);"><div class="lijst-kolom-1">{{product.titel}}</div><div class="lijst-kolom-2"> {{product.prijs}}</div><div class="clearfix"></div></a>
                     </li>
                 </ul>
             </div>
@@ -146,7 +141,7 @@
         <thead>
             <tr>
                 <th class="col-xs-11">
-                    Naam van Werkzaamheden
+                    Producten
                 </th>
                 <th class="col-xs-1 text-right">
                     Bedrag
