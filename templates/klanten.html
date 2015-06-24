@@ -1,5 +1,9 @@
 <div class="divider">
-    <h1>Klanten</h1>
+    <h1 class="col-sm-6 col-md-4">Klanten</h1>
+    <div ng-repeat="(key,val) in alerts" style="margin-top:10px; margin-bottom:0px;" class="col-xs-12 col-sm-6 col-md-4 pull-right alert {{key}} animate-repeat" role="alert">
+        <div ng-repeat="msg in val" class="animate-repeat">{{msg}}</div>
+    </div>
+    <div class="clearfix"></div>
 </div>
 <table class="table table-hover">
     <thead>
@@ -32,7 +36,7 @@
                 <a editable-text="klant.clientID">{{ klant.clientID || 'empty'}}</a>
             </td>
             <td>
-                <a editable-text="klant.contact">{{ klant.contact || 'empty'}}</a>            
+                <a editable-text="klant.contact">{{ klant.contact || 'empty'}}</a>
             </td>
             <td>
                 <a editable-text="klant.company">{{ klant.company || 'empty'}}</a>
@@ -55,7 +59,7 @@
                 {{ klant.clientID || 'empty'}}
             </td>
             <td>
-                {{ klant.contact || 'empty'}}           
+                {{ klant.contact || 'empty'}}
             </td>
             <td>
                 {{ klant.company || 'empty'}}

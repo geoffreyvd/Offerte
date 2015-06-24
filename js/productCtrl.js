@@ -1,5 +1,23 @@
-app.controller('productenCtrl', ['$scope', '$http', function ($scope, $http) {
+app.controller('productenCtrl', ['$scope', '$http', 'alertsManager', function ($scope, $http, alertsManager) {
 
+    $scope.fadeAlerts = function () {
+        setTimeout(function () {
+            $scope.$apply(function () {
+                alertsManager.clearAlerts();
+            });
+        }, 4000);
+    };
+
+    $scope.editProduct = function () {
+        $scope.invoerProducten = !$scope.invoerProducten;
+    };
+
+    $scope.deleteProduct = function (productid) {
+        $scope.productid = productid;
+        $("#bevestigModal").modal('show');
+    };
+
+    ///alle php connecties
     $scope.refreshProducten = function () {
         $scope.request = $http({
             method: "post",
@@ -18,15 +36,6 @@ app.controller('productenCtrl', ['$scope', '$http', function ($scope, $http) {
         });
     };
 
-    $scope.editProduct = function () {
-        $scope.invoerProducten = !$scope.invoerProducten;
-    };
-
-    $scope.deleteProduct = function (productid) {
-        $scope.productid = productid;
-        $("#bevestigModal").modal('show');
-    };
-
     $scope.deleteProduct2 = function () {
         $scope.request = $http({
             method: "post",
@@ -40,6 +49,8 @@ app.controller('productenCtrl', ['$scope', '$http', function ($scope, $http) {
         });
         $scope.request.success(function (data) {
             console.log("deleteProduct.php succes! data: ", data);
+            alertsManager.addAlert('product verwijdert, product id: ' + $scope.productid, 'alert-success');
+            $scope.fadeAlerts();
             $scope.refreshProducten();
         });
         $scope.request.error(function (data) {
@@ -64,6 +75,8 @@ app.controller('productenCtrl', ['$scope', '$http', function ($scope, $http) {
         });
         $scope.request.success(function (data) {
             console.log("postProducten.php succes! data: ", data);
+            alertsManager.addAlert('producten opgeslagen', 'alert-success');
+            $scope.fadeAlerts();
             $scope.refreshProducten();
         });
         $scope.request.error(function (data) {
@@ -76,4 +89,6 @@ app.controller('productenCtrl', ['$scope', '$http', function ($scope, $http) {
     $scope.nieuwProduct = {};
     $scope.parentVariables[0].selectedMenu = 3;
     $scope.refreshProducten();
+    $scope.alerts = alertsManager.alerts;
+    alertsManager.clearAlerts();
 }]);

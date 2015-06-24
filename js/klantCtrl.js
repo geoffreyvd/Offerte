@@ -1,5 +1,23 @@
-app.controller('KlantenCtrl', ['$scope', '$http', function ($scope, $http) {
+app.controller('KlantenCtrl', ['$scope', '$http', 'alertsManager', function ($scope, $http, alertsManager) {
 
+    $scope.fadeAlerts = function () {
+        setTimeout(function () {
+            $scope.$apply(function () {
+                alertsManager.clearAlerts();
+            });
+        }, 4000);
+    };
+
+    $scope.addKlant = function () {
+        $scope.invoerKlanten = !$scope.invoerKlanten;
+    };
+
+    $scope.deleteKlant = function (klantid) {
+        $scope.klantid = klantid;
+        $("#bevestigModal").modal('show');
+    };
+
+    ////alle php connecties
     $scope.refreshKlanten = function () {
         $scope.request = $http({
             method: "post",
@@ -18,15 +36,6 @@ app.controller('KlantenCtrl', ['$scope', '$http', function ($scope, $http) {
         });
     };
 
-    $scope.addKlant = function () {
-        $scope.invoerKlanten = !$scope.invoerKlanten;
-    };
-
-    $scope.deleteKlant = function (klantid) {
-        $scope.klantid = klantid;
-        $("#bevestigModal").modal('show');
-    };
-
     $scope.deleteKlant2 = function () {
         $scope.request = $http({
             method: "post",
@@ -40,6 +49,8 @@ app.controller('KlantenCtrl', ['$scope', '$http', function ($scope, $http) {
         });
         $scope.request.success(function (data) {
             console.log("deleteKlant.php succes! data: ", data);
+            alertsManager.addAlert('Klant verwijdert, klantid: ' + $scope.klantid, 'alert-success');
+            $scope.fadeAlerts();
             $scope.refreshKlanten();
         });
         $scope.request.error(function (data) {
@@ -64,16 +75,19 @@ app.controller('KlantenCtrl', ['$scope', '$http', function ($scope, $http) {
         });
         $scope.request.success(function (data) {
             console.log("postAllKlanten.php succes! data: ", data);
+            alertsManager.addAlert('klanten opgeslagen', 'alert-success');
+            $scope.fadeAlerts();
             $scope.refreshKlanten();
         });
         $scope.request.error(function (data) {
             console.log("postAllKlanten.php error! data: ", data);
         });
-
         $scope.invoerKlanten = !$scope.invoerKlanten;
     };
 
     $scope.refreshKlanten();
     $scope.nieuwklant = {};
     $scope.parentVariables[0].selectedMenu = 2;
+    $scope.alerts = alertsManager.alerts;
+    alertsManager.clearAlerts();
 }]);
