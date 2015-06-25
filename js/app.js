@@ -130,7 +130,7 @@ app.config(['$routeProvider',
             mainMenuLocation: '#/nieuweoffertes'
         },
         {
-            mainMenuName: 'Oude offertes',
+            mainMenuName: 'Oude Offertes',
             mainMenuIcon: 'fa-list-ul',
             mainMenuLocation: '#/oudeoffertes'
         },
