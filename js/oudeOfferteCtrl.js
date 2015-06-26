@@ -92,6 +92,5 @@ app.controller('OudeOfferteCtrl', ['$scope', '$http', '$log', 'alertsManager', f
         }, 4000);
     };
     
-    $scope.parentVariables[0].selectedMenu = 1;
-    
+    $scope.parentVariables[0].selectedMenu = 1;    
 }]);

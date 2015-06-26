@@ -25,7 +25,7 @@ app.controller('NieuweOfferteCtrl', ['$scope', '$http', '$log', 'alertsManager',
         };
         $scope.Werkzaamheden.push(Werkzaamheid);
     };
-    
+
     $scope.addTekst = function () {
         $scope.bedrag = "0geen bedrag";
         var Werkzaamheid = {
@@ -34,8 +34,8 @@ app.controller('NieuweOfferteCtrl', ['$scope', '$http', '$log', 'alertsManager',
         };
         $scope.Werkzaamheden.push(Werkzaamheid);
     };
-    
-    $scope.addProduct = function (titel,prijs) {
+
+    $scope.addProduct = function (titel, prijs) {
         var Werkzaamheid = {
             name: titel,
             price: prijs
@@ -59,7 +59,7 @@ app.controller('NieuweOfferteCtrl', ['$scope', '$http', '$log', 'alertsManager',
         }
         return total;
     };
-    
+
     $scope.fadeAlerts = function () {
         setTimeout(function () {
             $scope.$apply(function () {
@@ -67,11 +67,34 @@ app.controller('NieuweOfferteCtrl', ['$scope', '$http', '$log', 'alertsManager',
             });
         }, 4000);
     };
-    
-    
-    
+
+    $scope.leegVelden = function () {
+        $scope.parentVariables = [
+            {
+                titel: "",
+                offerteID: null
+            }
+        ];
+        $scope.offerteParent[0].Offerte[0] = {
+            klantID: 0,
+            omschrijving: '',
+            offerteTitel: ''
+        };
+        $scope.Werkzaamheden = [{
+            name: '',
+            price: 0
+                }];
+        $scope.offerteParent[0].Werkzaamheden = [{
+            name: '',
+            price: 0
+                }];
+        $scope.selectedKlant = {};
+        $scope.nieuweTitel = "";
+    };
+
+
     ////Alle connecties met php, voor het ophalen en opslana van data in de database    
-    
+
     $scope.uploadHuidigeOfferte = function () {
         //exception: als er geen offerte is geselecteerd is
         if ($scope.parentVariables[0].offerteID === null) {
@@ -172,10 +195,10 @@ app.controller('NieuweOfferteCtrl', ['$scope', '$http', '$log', 'alertsManager',
             console.log("getProducten error! data: ", data);
         });
     };
-    
-    
+
+
     ///Alle voor gedefiniteerde waardes --- deze worden eenmalig ingeladen bij het aanspreken van deze controller
-    
+
     $scope.refreshProducten();
     $scope.getKlanten();
     $scope.selectedKlant = {};

@@ -155,9 +155,6 @@ app.config(['$routeProvider',
             mainMenuLocation: '#/map'
         }
     ];
-    
-    $scope.ingelogd = true;
-    
 }])
 
 .controller('VoorraadCtrl', ['$scope', function ($scope) {

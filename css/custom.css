@@ -337,6 +337,7 @@ body {
 .werkzm-dropdown {
     width: 100%;
     overflow-y: auto;
+    max-height:500px;
 }
 
 

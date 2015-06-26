@@ -86,14 +86,18 @@
                 <div class="clearfix"></div>
                 <ul class="dropdown-menu werkzm-dropdown">
                     <li ng-repeat="product in producten">
-                        <a ng-click="addProduct(product.titel,product.prijs);"><div class="lijst-kolom-1">{{product.titel}}</div><div class="lijst-kolom-2"> {{product.prijs}}</div><div class="clearfix"></div></a>
+                        <a ng-click="addProduct(product.titel,product.prijs);">
+                            <div class="lijst-kolom-1">{{product.titel}}</div>
+                            <div class="lijst-kolom-2"> {{product.prijs}}</div>
+                            <div class="clearfix"></div>
+                        </a>
                     </li>
                 </ul>
             </div>
         </div>
 
         <!-- button group -->
-        <div class="text-center">
+        <div>
             <div class="btn-group col-xs-12 col-sm-5 col-md-4">
                 <a ng-click="bekijkPDF();" class="hidden-print btn btn-default col-xs-6">Bekijk PDF</a>
                 <div class="btn-group col-xs-6" style="padding: 0;">
@@ -111,6 +115,12 @@
                 </div>
             </div>
         </div>
+
+        <div class="clearfix visible-xs-block"></div>
+        <div class="col-xs-12 col-sm-2 center-block" style="float:none;">
+            <a ng-click="leegVelden();" class="btn btn-warning col-xs-12 center-block" style="float:none;">Maak velden leeg</a>
+        </div>
+
     </div>
 </div>
 
