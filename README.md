@@ -28,3 +28,6 @@ Output('Bekijk PDF' button): http://imgur.com/hUgqQ9h
 -import SQL file in database <br>
 -Edit 'getOffertes.php' database credentials password etc... <br>
 -Chrome browser
+
+
+© 2015 Geoffrey van Driessel ALL RIGHTS RESERVED
