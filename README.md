@@ -3,6 +3,7 @@ Bootsrap & Angularjs PDF invoice creater
 
 It's an invoice creater with simpele bootstrap forms, it is a Single Page Application.
 Angularjs will read the input information and will make a pdf invoice.
+It has a connection with a php backend with persistent storage in a mySQL database 
 
 feature's:
 -save invoice's to a SQL database
@@ -15,7 +16,6 @@ feature's:
 I am an intern at MintyMedia, a small webdevelopment company.
 This is the project I am currently working on, this is also the end project for school.
 
-Old web interface: http://imgur.com/lhFYQPD <br>
 <b>Current UI:</b> http://i.imgur.com/2jBb6ef.png <br>
 Output('Bekijk PDF' button): http://imgur.com/hUgqQ9h
 
